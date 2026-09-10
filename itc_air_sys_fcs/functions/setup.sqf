@@ -2,6 +2,12 @@ itc_air_fcs_ccip_resultIndex = -1;
 itc_air_fcs_ccip_impactPos = [0,0,0];
 itc_air_fcs_ccip_enabled = false;
 
+// New time-based CCIP solver state
+itc_air_fcs_ccip_rawPos = [0,0,0];
+itc_air_fcs_ccip_solutionVelocity = [0,0,0];
+itc_air_fcs_ccip_lastSolveTime = -1;
+itc_air_fcs_ccip_nextSolveTime = 0;
+
 itc_air_fcs_numSamples = 10;
 
 itc_air_fcs_posSamples = [];

@@ -1,6 +1,7 @@
 params ["_plane"];
 
-if(itc_air_fcs_ccrp_frame < 10) exitWith {itc_air_fcs_ccrp_frame = itc_air_fcs_ccrp_frame + 1;};
+// FIXME test with less rate limiting 
+if(itc_air_fcs_ccrp_frame < 2) exitWith {itc_air_fcs_ccrp_frame = itc_air_fcs_ccrp_frame + 1;};
 itc_air_fcs_ccrp_frame = 0;
 private _impactPoint = itc_air_fcs_ccip_impactPos;
 if((_plane getVariable "rip_mode") == "RIP SGL" || {(_plane getVariable "rip_mode") == "RIP PRS"}) then {

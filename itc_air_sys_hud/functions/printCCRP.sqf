@@ -42,7 +42,17 @@ _fallLine ctrlSetPosition [
   (0.5) * safeZoneH - (_scaleH/2),
   _scaleW,_scaleH
 ];
-private _yMod = (((itc_air_fcs_ccip_impactPos distance2D itc_air_spi) / 3000) min 1) * (_scaleH*0.75);
+private _velocity = velocity _plane;
+private _groundSpeed = vectorMagnitude [_velocity # 0, _velocity # 1, 0];
+private _distanceToRelease = itc_air_fcs_ccip_impactPos distance2D itc_air_spi;
+private _timeToRelease = 20;
+
+if (_groundSpeed > 1) then {
+  _timeToRelease = _distanceToRelease / _groundSpeed;
+};
+
+private _yMod = (((_timeToRelease min 20) max 0) / 20) * (_scaleH*0.75);
+
 _pipper ctrlSetPosition [
   ((safeZoneW / 2) - (_scaleW/2)) + (_impDirRad * (safeZoneW / _viewFOV)),
   (0.5) * safeZoneH - (_scaleH*0.75) + _yMod,
