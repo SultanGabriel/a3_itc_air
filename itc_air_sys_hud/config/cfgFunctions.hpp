@@ -22,15 +22,9 @@ class cfgFunctions {
       class drawHandler {
         file = "itc_air_sys_hud\functions\drawHandler.sqf";
       };
-      //class keys {
-      //  file = "itc_air_hmd\functions\keys.sqf";
-      //};
-      //class slew {
-      //  file = "itc_air_hmd\functions\slew.sqf";
-      //};
-      //class stabilise {
-      //  file = "itc_air_hmd\functions\stabilise.sqf";
-      //};
+      class printWarnings {
+        file = "itc_air_sys_hud\functions\printWarnings.sqf";
+      };
     };
   };
 };

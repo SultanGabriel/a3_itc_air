@@ -1,7 +1,9 @@
 params ["_plane"];
-(_UI displayCtrl 1204) ctrlShow itc_air_gcas_warn;
 
 private _UI = uiNameSpace getVariable "ITC_AIR_HUD_UI";
+
+(_UI displayCtrl 1204) ctrlShow itc_air_gcas_warn;
+
 ([] call itc_air_wpt_fnc_getCurrent) params ["_wpName","_name","_wpPos"];
 
 private _viewFOVX = (call cba_fnc_getFov) # 0;

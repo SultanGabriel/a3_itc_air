@@ -58,10 +58,11 @@ if !(_definition isEqualTo []) then {
     private _mode =
         _definition # 3;
 
-    if (_mode isEqualTo "EVENT") then {
-        [_vehicle, _id, false]
-            call itc_air_fws_fnc_setWarning;
-    };
+    // FIXME removed, may not be intended funcitonality
+    // if (_mode isEqualTo "EVENT") then {
+    //     [_vehicle, _id, false]
+    //         call itc_air_fws_fnc_setWarning;
+    // };
 };
 
 

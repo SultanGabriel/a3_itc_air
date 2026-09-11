@@ -78,3 +78,37 @@ _vehicle setVariable [
         [false, true]
     ]
 ] call itc_air_common_fnc_addOption;
+
+// Fuel Monitoring options
+[
+    _vehicle,
+    [
+        _vehicle,
+        "itc_air_fws_bingoFuel",
+        20,
+        "BINGO FUEL",
+        {},
+        "UFC",
+        {
+            _this >= 0 && _this <= 100
+        },
+        true
+    ]
+] call itc_air_common_fnc_addOption;
+
+
+[
+    _vehicle,
+    [
+        _vehicle,
+        "itc_air_fws_lowFuel",
+        10,
+        "LOW FUEL",
+        {},
+        "UFC",
+        {
+            _this >= 0 && _this <= 100
+        },
+        true
+    ]
+] call itc_air_common_fnc_addOption;

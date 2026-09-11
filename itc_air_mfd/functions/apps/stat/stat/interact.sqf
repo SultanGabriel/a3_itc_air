@@ -6,6 +6,9 @@ _allDamage params ["", "_name", "_status"];
 _list = (_display displayCtrl 21500);
 _index = lbCurSel _list;
 switch(_btn) do {
+  case "T1": {
+    _display setVariable ["page", "msg"];
+  }; 
   case "T2": {
     _display setVariable ["page","nav"];
   };

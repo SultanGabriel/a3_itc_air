@@ -9,6 +9,9 @@ switch(_btn) do {
       itc_air_wpt_tcn_on = false;
     };
   };
+  case "T1": {
+      _display setVariable ["page", "msg"];
+  };
   case "T3": {
     _display setVariable ["page","stat"];
   };

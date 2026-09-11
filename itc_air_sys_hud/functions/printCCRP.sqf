@@ -73,3 +73,6 @@ _sln ctrlSetPosition [
 ];
 _sln ctrlCommit 0;
 _slnLine ctrlCommit 0;
+
+
+// TODO: here' sthe troubling ccrp drawing

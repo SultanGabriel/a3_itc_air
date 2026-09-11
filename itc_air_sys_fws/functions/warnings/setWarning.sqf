@@ -79,7 +79,7 @@ if (_isActive) exitWith {
 
 private _expiry = -1;
 
-if (_mode isEqualTo "EVENT") then {
+if (_mode isEqualTo "EVENT" && _eventTTL > 0) then {
     _expiry = CBA_missionTime + _eventTTL;
 };
 

@@ -47,6 +47,17 @@ class CfgSounds
         };
         titles[] = {};
     };
+    class ITC_AIR_FWS_FUEL_LOW
+    {
+        name = "ITC AIR FWS - Fuel LOW";
+        sound[] =
+        {
+            "\itc_air_sys_fws\sounds\fuel-low.ogg",
+            1,
+            1
+        };
+        titles[] = {};
+    };
 
     class ITC_AIR_FWS_CAUTION
     {

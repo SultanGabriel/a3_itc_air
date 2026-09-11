@@ -87,6 +87,34 @@ class RscTitles {
           h = 0.04;
         	text = "itc_air_hmd\data\UI\TGP.paa";
         };
+        class RscHUDWarning1: RscText
+        {
+            idc = 1010;
+
+            text = "";
+            style = 2;
+            sizeEx = 0.035;
+
+            colorText[] = {1, 0.1, 0.1, 1};
+            colorShadow[] = {0, 0, 0, 1};
+
+            x = (safeZoneW / 2) - ((0.20 * 3/4) / 2);
+            y = safeZoneH * 0.18;
+            w = 0.20 * 3/4;
+            h = 0.035;
+        };
+
+        class RscHUDWarning2: RscHUDWarning1
+        {
+            idc = 1011;
+            y = (safeZoneH * 0.18) + 0.035;
+        };
+
+        class RscHUDWarning3: RscHUDWarning1
+        {
+            idc = 1012;
+            y = (safeZoneH * 0.18) + 0.070;
+        };
       };
     };
     class ITC_HUD_CCRP_UI_GRP : RscControlsGroupNoScrollbars {

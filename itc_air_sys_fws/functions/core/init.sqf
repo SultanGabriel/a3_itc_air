@@ -11,28 +11,3 @@ itc_air_fws_definitions =
 if (isNil "itc_air_fws_auralOn") then {
     itc_air_fws_auralOn = true;
 };
-
-
-// Add keybind for EICAS ACK
-[
-    "ITC Air",
-    "itc_air_fws_ack",
-    "FWS ACK",
-    {
-        private _vehicle = vehicle player;
-
-        if (
-            _vehicle getVariable [
-                "itc_air_fws_initialized",
-                false
-            ]
-        ) then {
-            [_vehicle]
-                call itc_air_fws_fnc_acknowledge;
-        };
-
-        false
-    },
-    "",
-    []
-] call CBA_fnc_addKeybind;

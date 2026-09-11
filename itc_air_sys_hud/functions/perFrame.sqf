@@ -18,3 +18,4 @@ if(cameraView != "INTERNAL" ||  (_dotProdCam < cos 8) || dialog) exitWith {
 _this call itc_air_hud_fnc_printCCRP;
 _this call itc_air_hud_fnc_printText;
 _this call itc_air_hud_fnc_printIcons;
+_this call itc_air_hud_fnc_printWarnings;

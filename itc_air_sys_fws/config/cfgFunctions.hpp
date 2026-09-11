@@ -63,6 +63,11 @@ class cfgFunctions
             {
                 file = "itc_air_sys_fws\functions\warnings\getActiveWarnings.sqf";
             };
+
+            class getShorthand
+            {
+                file = "itc_air_sys_fws\functions\warnings\getShorthand.sqf";
+            };
         };
 
 

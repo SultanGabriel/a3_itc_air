@@ -7,6 +7,9 @@ private _systemsAll = _plane getVariable "itc_air_systems_available";
 _list = (_display displayCtrl 21500);
 _index = lbCurSel _list;
 switch(_btn) do {
+  case "T1": {
+    _display setVariable ["page", "msg"];
+  }; 
   case "T2": {
     _display setVariable ["page","nav"];
   };

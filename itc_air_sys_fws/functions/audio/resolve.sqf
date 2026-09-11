@@ -43,12 +43,15 @@ private _highestPriority = -1;
         ];
 
         private _silenced =
-            _acknowledged &&
-            (
+            (_acknowledged && (
                 _acknowledgeMode isEqualTo "SILENCE" ||
                 _acknowledgeMode isEqualTo "ACKNOWLEDGE"
+            ) )||  (
+                _repeatDelay < 0 &&
+                _lastPlayed >= 0 
             );
 
+        // Repeat disabled when _repeatDelay < 0
         private _hasAudio =
             !(_audioSequence isEqualTo []);
 
@@ -95,8 +98,16 @@ private _candidate = [];
             "_acknowledgeMode"
         ];
 
-        if (_priority isEqualTo _highestPriority
-        && !(_audioSequence isEqualTo [])
+       private _silenced =
+            _acknowledged && (
+                _acknowledgeMode isEqualTo "SILENCE" ||
+                _acknowledgeMode isEqualTo "ACKNOWLEDGE"
+            );
+
+        if (
+            _priority isEqualTo _highestPriority &&
+            !(_audioSequence isEqualTo []) &&
+            !_silenced
         ) then {
 
             private _canPlay = true;
@@ -108,6 +119,10 @@ private _candidate = [];
                 _canPlay =
                     CBA_missionTime >=
                     (_lastPlayed + _repeatDelay);
+            };
+
+            if (_repeatDelay < 0) then {
+                _canPlay = _lastPlayed < 0;
             };
 
             if (_canPlay) exitWith {

@@ -2,6 +2,7 @@ params ["_display"];
 #include "..\..\..\mfdDefines.hpp"
 (_display displayCtrl 10201) ctrlShow true;
 
+(_display displayCtrl T1) ctrlSetText "MSG";
 (_display displayCtrl T2) ctrlSetText "NAV";
 invertText(_display,T2);
 (_display displayCtrl T3) ctrlSetText "DAM";

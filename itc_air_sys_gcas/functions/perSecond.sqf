@@ -2,6 +2,33 @@ params ["_plane"];
 if(getPos _plane # 2 < 1 || !itc_air_gcas_on) exitWith {itc_air_gcas_warn = false;};
 
 
+
+private _agl =
+    getPosATL _plane # 2;
+
+private _alow =
+    _plane getVariable [
+        "itc_air_gcas_alow",
+        250
+    ];
+
+private _lastAgl =
+    _plane getVariable [
+        "itc_air_gcas_lastAgl",
+        _agl
+    ];
+
+private _lowAltArmed =
+    _plane getVariable [
+        "itc_air_gcas_lowAltArmed",
+        true
+    ];
+
+private _gearDown =
+    (_plane animationSourcePhase "gear") < 0.5;
+
+
+
 private _collide = [_plane, 1.5] call itc_air_gcas_fnc_checkCollide;
 private _terrainWarning = [_plane, 5.5] call itc_air_gcas_fnc_checkCollide;
 
@@ -27,7 +54,9 @@ private _lastTerrain = _plane getVariable ["itc_air_gcas_lastTerrain", false];
 
 if (!(isNil "itc_air_fws_fnc_setWarning")) then
 {
-    if (_collide != _lastCollide) then
+    // Check for collision warnings
+    // When gear is down, warning is inhibited
+    if (!_gearDown && _collide != _lastCollide) then
     {
         _plane setVariable ["itc_air_gcas_lastCollide", _collide];
         [_plane, "PULL_UP", _collide] call itc_air_fws_fnc_setWarning;
@@ -45,34 +74,6 @@ if (!(isNil "itc_air_fws_fnc_setWarning")) then
 // LOW ALTITUDE
 // ------------------------------------------------------------------
 
-private _agl =
-    getPosATL _plane # 2;
-
-private _alow =
-    _plane getVariable [
-        "itc_air_gcas_alow",
-        250
-    ];
-
-private _lastAgl =
-    _plane getVariable [
-        "itc_air_gcas_lastAgl",
-        _agl
-    ];
-
-private _lowAltArmed =
-    _plane getVariable [
-        "itc_air_gcas_lowAltArmed",
-        true
-    ];
-
-private _gearDown =
-    _plane getVariable [
-        "itc_air_gearState",
-        false
-    ];
-
-
 // Rearm only after climbing clearly above the threshold.
 // 30 m prevents repeated warnings when flying around the boundary.
 
@@ -87,6 +88,7 @@ if (
         "itc_air_gcas_lowAltArmed",
         true
     ];
+
 };
 
 
@@ -99,8 +101,9 @@ if (
     _agl <= _alow
 ) then {
 
+    systemChat "LOW ALTITUDE";
     if (!(isNil "itc_air_fws_fnc_setWarning")) then {
-        [_plane, "LOW_ALTITUDE", true]
+        [_plane, "ALTITUDE", true]
             call itc_air_fws_fnc_setWarning;
     };
 

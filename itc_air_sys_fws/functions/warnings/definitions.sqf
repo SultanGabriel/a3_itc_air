@@ -10,7 +10,7 @@
 	        // mode,
 	        // audioSequence,
 	        // repeatDelay,
-	        // eventTTL,
+	        // eventTTL, -1 to disable
 	        // canPreempt,
 	        // acknowledgeMode
 	    ]
@@ -52,7 +52,7 @@
 		[
 			// ["ITC_AIR_FWS_250HZ", true],
 			// ["ITC_AIR_FWS_250HZ", true],
-			["ITC_AIR_FWS_PULL_UP_IMMEDIATE", true],
+			["ITC_AIR_FWS_PULL_UP_IMMEDIATE", true]
 		],
 		0.25,
 		0,
@@ -84,7 +84,7 @@
 			["ITC_AIR_FWS_ALTITUDE", true]
 		],
 		-1,
-		2.0,
+		4.00,
 		false,
 		"ACKNOWLEDGE"
 	],
@@ -97,14 +97,14 @@
 		[
 			["ITC_AIR_FWS_LANDING_GEAR", true]
 		],
-		4.0,
+		-1,
 		0,
 		false,
 		"SILENCE"
 	],
 
 	[
-		"BINGO",
+		"FUEL_BINGO",
 		65,
 		"CAUTION",
 		"EVENT",
@@ -112,7 +112,20 @@
 			["ITC_AIR_FWS_BINGO_FUEL", true]
 		],
 		-1,
-		4.0,
+		-1,
+		false,
+		"SILENCE"
+	],
+	[
+		"FUEL_LOW",
+		75,
+		"WARNING",
+		"STATE",
+		[
+			["ITC_AIR_FWS_FUEL_LOW", true]
+		],
+		-1,
+		-1,
 		false,
 		"SILENCE"
 	],
@@ -126,7 +139,7 @@
 			["ITC_AIR_FWS_AP_DISC", true]
 		],
 		    -1, 
-		    5.0, 
+		    -1, 
 		    false, 
 		    "ACKNOWLEDGE"                   
 	]
