@@ -2,3 +2,6 @@
 *.rvmat
 gbu*.paa
 gbu*.png
+
+
+tools/.buildtmp/*

@@ -147,6 +147,11 @@ itc_air_autopilot_pfhId = [{
 		//we exit
 		[_this select 1] call CBA_fnc_removePerFrameHandler;
 
+		// FWS Aural Warning
+		if (!(isNil "itc_air_fws_fnc_setWarning")) then {
+			[_plane, "AP_DISC", true] call itc_air_fws_fnc_setWarning;
+		};
+
 		//this value is set to false in key handler where we toggle AP off
 		if (!ITC_AP_isEnabled) exitWith {
 			hint "Autopilot turned off";
@@ -176,7 +181,10 @@ itc_air_autopilot_pfhId = [{
 			hint "Autopilot off - Heading limit";
 		};
 
-		//systemChat format ["aborting autopilot!, va: %1, bank: %2, hdg: %3", abs (_velocityAngle - itc_air_autopilot_targetVelocityAngle), abs (_bank - itc_air_autopilot_targetBank), abs (_hdg - ITC_AP_TargetHdg)];
+		// FIXME DEBUG 
+		// systemChat format ["aborting autopilot!, va: %1, bank: %2, hdg: %3", abs (_velocityAngle - itc_air_autopilot_targetVelocityAngle), abs (_bank - itc_air_autopilot_targetBank), abs (_hdg - ITC_AP_TargetHdg)];
+
+		
 	};
 
 	//BANK TURN
