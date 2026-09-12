@@ -62,12 +62,6 @@ _fuel <= _bingoFuel
 private _isLowFuel = _fuel <= _lowFuel;
 [_vehicle, "FUEL_LOW", _isLowFuel] call itc_air_fws_fnc_setWarning;
 
-systemChat format [
-    "FUEL %1 LOW %2 ACTIVE %3",
-    _fuel,
-    _lowFuel,
-    _isLowFuel
-];
 // -------------------------------------------------------------------------
 // fuel consumption estimate
 // -------------------------------------------------------------------------

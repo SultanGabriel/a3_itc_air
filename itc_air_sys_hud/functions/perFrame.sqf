@@ -19,3 +19,4 @@ _this call itc_air_hud_fnc_printCCRP;
 _this call itc_air_hud_fnc_printText;
 _this call itc_air_hud_fnc_printIcons;
 _this call itc_air_hud_fnc_printWarnings;
+_this call itc_air_hud_fnc_printTrim;

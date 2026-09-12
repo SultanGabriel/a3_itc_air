@@ -29,8 +29,74 @@ class cfgVehicles {
       //#include "MFD.hpp"
       class itc_air : itc_air_default_jet {
         tgp_overlay = "itc_air_a10e\data\overlay.paa";
-        systems[] = {"UFC","SOI","TAXI","DSMS","MAVERICK","FWS","MFD","MFD_L","MFD_R","HMD","AUTOPILOT","ROVER","SADL","FCS","ACMI","GCAS","TGP","WPT","TAD","HUD","EW"};
+        systems[] = {
+            "UFC",
+            "SOI",
+            "TAXI",
+            "DSMS",
+            "MAVERICK",
+            "FWS",
+            "TRIM",
+            "MFD",
+            "MFD_L",
+            "MFD_R",
+            "HMD",
+            "AUTOPILOT",
+            "ROVER",
+            "SADL",
+            "FCS",
+            "ACMI",
+            "GCAS",
+            "TGP",
+            "WPT",
+            "TAD",
+            "HUD",
+            "EW"
+            };
+
+        // Pitch-trim configuration.
+        // Defines trim limits, how fast trim moves, and how strongly the trim effect
+        // scales with aircraft speed before it is applied as a pitching moment.
+
+        // FIXME coeff / values have to be adjusted
+
+        class trim
+        {
+            // Maximum allowed nose-up trim position.
+            // Example: +0.30 is the upper trim limit.
+            maxNoseUpTrim = 0.20;
+
+            // Maximum allowed nose-down trim magnitude.
+            // The runtime lower limit becomes -0.20.
+            maxNoseDownTrim = 0.15;
+
+            // Nose-up trim movement speed while the trim-up key is held.
+            // Units are normalized trim position per second.
+            trimRateUp = 0.02;
+
+            // Nose-down trim movement speed while the trim-down key is held.
+            // Units are normalized trim position per second.
+            trimRateDown = 0.02;
+
+            // Base strength of the physical pitching moment created by trim.
+            // This is the main aircraft-specific tuning value.
+            pitchAuthority = 1000.0; // FIXME try like 2000.0
+
+            // Forward speed in m/s where the speed factor is approximately 1.0.
+            // Trim effectiveness scales relative to this speed.
+            referenceSpeed = 100.0;
+
+            // Below this forward speed in m/s, no trim torque is applied.
+            // This prevents unrealistic trim effects while nearly stationary.
+            minimumEffectSpeed = 40.0;
+
+            // Maximum allowed speed multiplier for trim effectiveness.
+            // This prevents the squared speed scaling from becoming excessive.
+            maximumSpeedFactor = 4.5; // 2->2.5 FIXME then reduce this to 2.5
+        };
+
         turret = -1;
+
       };
       class pilotCamera : litening { };
       class Components : Components

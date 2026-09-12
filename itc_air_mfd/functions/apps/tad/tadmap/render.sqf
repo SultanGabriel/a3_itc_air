@@ -16,8 +16,9 @@ _plane = (vehicle player);
 
 _centerPos = if(itc_air_tad_expand == 0) then [{getPos _plane}, {itc_air_tad_pos}];
 
-_map drawEllipse [getPos _plane, _radius * 0.9, _radius * 0.9, 0, [0,1,0,1]];
-_map drawEllipse [getPos _plane, _radius * 0.45, _radius * 0.45, 0, [0,1,0,1]];
+// FIXME TAD error here, haven't investigated yet
+  _map drawEllipse [getPos _plane, _radius * 0.9, _radius * 0.9, 0, [0,1,0,1]];
+  _map drawEllipse [getPos _plane, _radius * 0.45, _radius * 0.45, 0, [0,1,0,1]];
 
 if(itc_air_tgp_capable) then {
   _map drawIcon ["itc_air_mfd\data\UI\WPT_MFD.paa", [1,1,1,1], ((_plane getVariable "tgp_dir") select 1),  20,20, 0,  ".", 0, 0.01];

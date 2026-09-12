@@ -87,6 +87,10 @@ class RscTitles {
           h = 0.04;
         	text = "itc_air_hmd\data\UI\TGP.paa";
         };
+
+        // ==========================
+        // Warning Display
+        // ==========================
         class RscHUDWarning1: RscText
         {
             idc = 1010;
@@ -114,6 +118,115 @@ class RscTitles {
         {
             idc = 1012;
             y = (safeZoneH * 0.18) + 0.070;
+        };
+
+        // ==========================
+        // TRIM DISPLAY
+        // ==========================
+
+        // Trim scale label.
+        class RscHUDTrimLabel : RscHUDTextStptName
+        {
+            idc = 1020;
+
+            text = "TRIM";
+
+            x = (safeZoneW / 2) + 0.18;
+            y = (safeZoneH / 2) + 0.035;
+
+            w = 0.06;
+            h = 0.035;
+
+            sizeEx = 0.028;
+            style = 0;
+        };
+
+
+        class RscHUDTrimScale : RscHUDTextStptName
+        {
+            idc = 1021;
+
+            text = "ND\n|\n|\n|\n|\n|\n|\n|\nNU";
+
+            x = (safeZoneW / 2) + 0.18;
+            y = (safeZoneH / 2) + 0.07;
+
+            w = 0.06;
+            h = 0.21;
+
+            sizeEx = 0.025;
+
+            style = 528;
+            lineSpacing = 1;
+        };
+
+
+        class RscHUDTrimPointer : RscHUDTextStptName
+        {
+            idc = 1022;
+
+            text = "<";
+
+            x = 0;
+            y = 0;
+
+            w = 0.03;
+            h = 0.03;
+
+            sizeEx = 0.030;
+            style = 0;
+        };
+
+
+        class RscHUDTrimTO : RscHUDTextStptName
+        {
+            idc = 1023;
+
+            text = "T/O";
+
+            x = (safeZoneW / 2) + 0.15;
+            y = (safeZoneH / 2) + 0.11;
+
+            w = 0.04;
+            h = 0.03;
+
+            sizeEx = 0.022;
+            style = 0;
+        };
+
+
+        class RscHUDTrimTOBox : RscHUDTextStptName
+        {
+            idc = 1024;
+
+            text = "";
+            style = 64;
+
+            x = 0;
+            y = 0;
+
+            w = 0.016;
+            h = 0.03;
+
+            colorText[] = {0,1,0,1};
+        };
+
+
+        // Neutral trim reference.
+        class RscHUDTrimZero : RscHUDTextStptName
+        {
+            idc = 1025;
+
+            text = "O";
+
+            x = 0;
+            y = 0;
+
+            w = 0.025;
+            h = 0.025;
+
+            sizeEx = 0.020;
+            style = 2;
         };
       };
     };
