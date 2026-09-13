@@ -1,6 +1,9 @@
 class cfgFunctions {
   class itc_air_autopilot {
     class functions {
+      class disengage {
+          file = "itc_air_autopilot\functions\disengage.sqf";
+      };
       class autopilotInit {
           postInit = 1;
           file = "itc_air_autopilot\functions\autopilotInit.sqf";

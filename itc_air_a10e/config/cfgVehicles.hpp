@@ -54,6 +54,19 @@ class cfgVehicles {
             "EW"
             };
 
+        class gcas
+        {
+            // Low-speed warning threshold and recovery margin, in m/s.
+            lowSpeed = 70;
+            lowSpeedHysteresis = 5;
+
+            // Gear and sink-rate warning tuning.
+            lowGearHeight = 100;
+            sinkRateHeight = 500;
+            sinkRate = 35;
+            sinkRateHysteresis = 4;
+        };
+
         // Pitch-trim configuration.
         // Defines trim limits, how fast trim moves, and how strongly the trim effect
         // scales with aircraft speed before it is applied as a pitching moment.
@@ -80,7 +93,7 @@ class cfgVehicles {
 
             // Base strength of the physical pitching moment created by trim.
             // This is the main aircraft-specific tuning value.
-            pitchAuthority = 2200.0; // FIXME try like 2000.0
+            pitchAuthority = 2400.0; // FIXME try like 2000.0
 
             // Forward speed in m/s where the speed factor is approximately 1.0.
             // Trim effectiveness scales relative to this speed.

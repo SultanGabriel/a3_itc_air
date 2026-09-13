@@ -15,6 +15,8 @@ _vehicle setVariable [
     ""
 ];
 
+_vehicle setVariable ["itc_air_fws_currentOccurrence", -1];
+
 _vehicle setVariable [
     "itc_air_fws_currentPriority",
     -1

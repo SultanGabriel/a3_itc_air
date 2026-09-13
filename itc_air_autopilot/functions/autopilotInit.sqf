@@ -29,7 +29,7 @@ ITC_AP_isEnabled = false;
 	if (!(vehicle player isKindOf "Plane") && {driver vehicle player == player}) exitWith {};
 	if("AUTOPILOT" in (vehicle player getVariable ["itc_air_systems",[]])) then {
 		if (ITC_AP_isEnabled) then {
-			ITC_AP_isEnabled = false;
+			[vehicle player] call itc_air_autopilot_fnc_disengage;
 			if(ITC_AP_mode == 3) then {
 				ITC_AP_mode = ["ALT","ALT/HDG","PATH"] find ITC_AP_modeString;
 			};

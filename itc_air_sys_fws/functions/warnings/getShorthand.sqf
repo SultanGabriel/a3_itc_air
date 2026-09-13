@@ -19,6 +19,18 @@ switch (_id) do {
         "ALT"
     };
 
+    case "TOO_LOW_GEAR": {
+        "GEAR"
+    };
+
+    case "SINK_RATE": {
+        "SINK"
+    };
+
+    case "STALL": {
+        "STALL"
+    };
+
     case "CHECK_GEAR": {
         "GEAR"
     };

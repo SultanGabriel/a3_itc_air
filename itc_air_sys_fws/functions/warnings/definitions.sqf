@@ -10,9 +10,10 @@
 	        // mode,
 	        // audioSequence,
 	        // repeatDelay,
-	        // eventTTL, -1 to disable
+	        // audioTTL, -1 to disable (does not expire the visual)
 	        // canPreempt,
-	        // acknowledgeMode
+	        // acknowledgeMode,
+	        // reservesAudio (optional, defaults to false)
 	    ]
 	
 	    class:
@@ -26,8 +27,8 @@
 	            The producer must clear the warning.
 	
 	        "EVENT"
-	            The warning is temporary.
-	            FWS removes it after playback, acknowledgement, or timeout.
+	            A producer reports a discrete occurrence.
+	            ACKNOWLEDGE removes its visual; playback alone does not.
 	
 	    acknowledgeMode:
 	        "NONE"
@@ -57,7 +58,8 @@
 		0.25,
 		0,
 		true,
-		"NONE"
+		"NONE",
+		true
 	],
 
 	[
@@ -71,22 +73,79 @@
 		],
 		1.5,
 		0,
-		false,
-		"NONE"
+		true,
+		"NONE",
+		true
 	],
 
 	[
 		"ALTITUDE",
 		70,
 		"WARNING",
-		"EVENT",
+		"STATE",
 		[
 			["ITC_AIR_FWS_ALTITUDE", true]
 		],
 		-1,
-		4.00,
+		-1,
 		false,
-		"ACKNOWLEDGE"
+		"SILENCE"
+	],
+
+	[
+		"SPEED",
+		80,
+		"WARNING",
+		"STATE",
+		[
+			["ITC_AIR_FWS_SPEED", true]
+		],
+		2.0,
+		0,
+		false,
+		"SILENCE"
+	],
+
+	[
+		"TOO_LOW_GEAR",
+		75,
+		"WARNING",
+		"STATE",
+		[
+			["ITC_AIR_FWS_TOO_LOW_GEAR", true]
+		],
+		-1,
+		-1,
+		false,
+		"SILENCE"
+	],
+
+	[
+		"SINK_RATE",
+		85,
+		"WARNING",
+		"STATE",
+		[
+			["ITC_AIR_FWS_SINK_RATE", true]
+		],
+		-1,
+		-1,
+		false,
+		"SILENCE"
+	],
+
+	[
+		"STALL",
+		85,
+		"WARNING",
+		"STATE",
+		[
+			["ITC_AIR_FWS_STALL", true]
+		],
+		-1,
+		-1,
+		false,
+		"SILENCE"
 	],
 
 	[
@@ -107,7 +166,7 @@
 		"FUEL_BINGO",
 		65,
 		"CAUTION",
-		"EVENT",
+		"STATE",
 		[
 			["ITC_AIR_FWS_BINGO_FUEL", true]
 		],
@@ -151,26 +210,8 @@
 	    //     // mode,
 	    //     // audioSequence,
 	    //     // repeatDelay,
-	    //     // eventTTL,
+	    //     // audioTTL,
 	    //     // canPreempt,
 	    //     // acknowledgeMode
-	    // ]
-	
-	    // [
-		    //     "STALL"
-	    // ] FIXME add stall too :3
-
-	    // Advisory 
-
-	    // [
-		    //     "AIR_BRAKE",
-		    //     30,
-		    //     "ADVISORY",
-		    //     "STATE",
-		    //     [],
-		    //     -1,
-		    //     0,
-		    //     false,
-		    //     "NONE"
 	    // ]
 ]

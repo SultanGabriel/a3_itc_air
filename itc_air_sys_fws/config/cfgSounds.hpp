@@ -36,6 +36,54 @@ class CfgSounds
         titles[] = {};
     };
 
+    class ITC_AIR_FWS_SPEED
+    {
+        name = "ITC AIR FWS - Speed";
+        sound[] =
+        {
+            "\itc_air_sys_fws\sounds\speed.ogg",
+            1,
+            1
+        };
+        titles[] = {};
+    };
+
+    class ITC_AIR_FWS_TOO_LOW_GEAR
+    {
+        name = "ITC AIR FWS - Too Low Gear";
+        sound[] =
+        {
+            "\itc_air_sys_fws\sounds\landing_gear.ogg",
+            1,
+            1
+        };
+        titles[] = {};
+    };
+
+    class ITC_AIR_FWS_SINK_RATE
+    {
+        name = "ITC AIR FWS - Sink Rate";
+        sound[] =
+        {
+            "\itc_air_sys_fws\sounds\sink-rate.ogg",
+            1,
+            1
+        };
+        titles[] = {};
+    };
+
+    class ITC_AIR_FWS_STALL
+    {
+        name = "ITC AIR FWS - Stall";
+        sound[] =
+        {
+            "\itc_air_sys_fws\sounds\stall.ogg",
+            1,
+            1
+        };
+        titles[] = {};
+    };
+
     class ITC_AIR_FWS_BINGO_FUEL
     {
         name = "ITC AIR FWS - Bingo Fuel";

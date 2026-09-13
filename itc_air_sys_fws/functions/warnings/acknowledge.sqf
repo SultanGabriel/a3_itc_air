@@ -35,9 +35,10 @@ for "_i" from ((count _warnings) - 1) to 0 step -1 do {
 
     _warning params [
         "_id",
+        "_occurrence",
         "_acknowledged",
-        "_expiry",
-        "_lastPlayed"
+        "_lastPlayed",
+        "_audioExpiresAt"
     ];
 
     private _definition =
@@ -52,7 +53,7 @@ for "_i" from ((count _warnings) - 1) to 0 step -1 do {
             "_mode",
             "_audioSequence",
             "_repeatDelay",
-            "_eventTTL",
+            "_audioTTL",
             "_canPreempt",
             "_acknowledgeMode"
         ];
@@ -62,7 +63,7 @@ for "_i" from ((count _warnings) - 1) to 0 step -1 do {
             case "SILENCE": {
 
                 _warning set [
-                    1,
+                    2,
                     true
                 ];
 
@@ -86,7 +87,7 @@ for "_i" from ((count _warnings) - 1) to 0 step -1 do {
                     // Audio and display logic can hide acknowledged warnings.
 
                     _warning set [
-                        1,
+                        2,
                         true
                     ];
 

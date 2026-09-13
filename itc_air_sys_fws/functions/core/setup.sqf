@@ -14,12 +14,13 @@ _vehicle setVariable [
 // -------------------------------------------------------------------------
 
 // Entry:
-// [_id, _acknowledged, _expiry, _lastPlayed]
+// [_id, _occurrence, _acknowledged, _lastAudioCompleted, _audioExpiresAt]
 // Meaning: 
 //		id             warning ID
 //		acknowledged   pilot has ACKed this occurrence
-//		expiry         -1 = producer-owned, otherwise absolute expiry time
-//		lastPlayed     -1 = never played, otherwise CBA_missionTime
+//      occurrence     monotonically increasing aircraft-local identity
+//      audioExpiresAt -1 = no audio deadline; never clears the visual
+//      lastAudioCompleted -1 = no complete cycle, otherwise CBA_missionTime
 
 _vehicle setVariable [
     "itc_air_fws_active",
@@ -30,30 +31,7 @@ _vehicle setVariable [
 // Current audio playback state
 // -------------------------------------------------------------------------
 
-_vehicle setVariable [
-    "itc_air_fws_currentId",
-    ""
-];
-
-_vehicle setVariable [
-    "itc_air_fws_currentPriority",
-    -1
-];
-
-_vehicle setVariable [
-    "itc_air_fws_currentSequence",
-    []
-];
-
-_vehicle setVariable [
-    "itc_air_fws_currentIndex",
-    -1
-];
-
-_vehicle setVariable [
-    "itc_air_fws_currentSource",
-    objNull
-];
+[_vehicle] call itc_air_fws_fnc_interruptCurrent;
 
 
 // Internal monitors

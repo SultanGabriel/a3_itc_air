@@ -27,7 +27,7 @@ class CfgUserActions
         displayName = "FWS Acknowledge";
         tooltip = "Acknowledge FWS Warnings";
 
-        onActivate = "if (!isNil 'itc_air_fws_fnc_acknowledge') then { call itc_air_fws_fnc_acknowledge; };";
+        onActivate = "if (!isNil 'itc_air_fws_fnc_acknowledge') then { [vehicle player] call itc_air_fws_fnc_acknowledge; };";
     };
 
 

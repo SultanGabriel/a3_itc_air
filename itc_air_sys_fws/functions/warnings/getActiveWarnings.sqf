@@ -10,11 +10,6 @@ if !(
 };
 
 
-// Remove expired EVENT warnings first.
-
-[_vehicle] call itc_air_fws_fnc_pruneWarnings;
-
-
 private _warnings =
     _vehicle getVariable [
         "itc_air_fws_active",
@@ -27,9 +22,10 @@ private _result = [];
 {
     _x params [
         "_id",
+        "_occurrence",
         "_acknowledged",
-        "_expiry",
-        "_lastPlayed"
+        "_lastPlayed",
+        "_audioExpiresAt"
     ];
 
     private _definition =

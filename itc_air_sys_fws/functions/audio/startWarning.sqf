@@ -14,7 +14,7 @@ _definition params [
     "_mode",
     "_audioSequence",
     "_repeatDelay",
-    "_eventTTL",
+    "_audioTTL",
     "_canPreempt",
     "_acknowledgeMode"
 ];
@@ -22,6 +22,12 @@ _definition params [
 if (_audioSequence isEqualTo []) exitWith {
     false
 };
+
+private _warnings = _vehicle getVariable ["itc_air_fws_active", []];
+private _index = _warnings findIf {(_x # 0) isEqualTo _id};
+if (_index < 0) exitWith {false};
+
+_vehicle setVariable ["itc_air_fws_currentOccurrence", (_warnings # _index) # 1];
 
 private _segment = _audioSequence # 0;
 

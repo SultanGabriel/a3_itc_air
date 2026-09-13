@@ -1,6 +1,9 @@
 class cfgFunctions {
   class itc_air_gcas {
     class functions {
+      class isLanding {
+        file = "itc_air_sys_gcas\functions\isLanding.sqf";
+      };
       class init {
         preInit = 1;
         file = "itc_air_sys_gcas\functions\init.sqf";

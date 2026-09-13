@@ -54,11 +54,6 @@ class cfgFunctions
                 file = "itc_air_sys_fws\functions\warnings\acknowledge.sqf";
             };
 
-            class pruneWarnings
-            {
-                file = "itc_air_sys_fws\functions\warnings\pruneWarnings.sqf";
-            };
-
             class getActiveWarnings
             {
                 file = "itc_air_sys_fws\functions\warnings\getActiveWarnings.sqf";
@@ -73,6 +68,11 @@ class cfgFunctions
 
         class Audio
         {
+            class isInhibited
+            {
+                file = "itc_air_sys_fws\functions\audio\isInhibited.sqf";
+            };
+
             class resolve
             {
                 file = "itc_air_sys_fws\functions\audio\resolve.sqf";
@@ -97,6 +97,16 @@ class cfgFunctions
 
         class FuelMonitoring
         {
+            class sampleFuel
+            {
+                file = "itc_air_sys_fws\functions\monitoring\fuel\sampleFuel.sqf";
+            };
+
+            class getFuelData
+            {
+                file = "itc_air_sys_fws\functions\monitoring\fuel\getFuelData.sqf";
+            };
+
             class initFuel
             {
                 file = "itc_air_sys_fws\functions\monitoring\fuel\initFuel.sqf";
@@ -119,6 +129,15 @@ class cfgFunctions
             class monitorDamage
             {
                 file = "itc_air_sys_fws\functions\monitoring\damage\monitorDamage.sqf";
+            };
+        };
+
+
+        class EnvelopeMonitoring
+        {
+            class monitorEnvelope
+            {
+                file = "itc_air_sys_fws\functions\monitoring\envelope\monitorEnvelope.sqf";
             };
         };
     };

@@ -11,5 +11,7 @@ if !(
 // Simple generic aircraft monitoring.
 // Specialist systems such as GCAS, EW and FCS remain external producers.
 
+[_plane] call itc_air_fws_fnc_sampleFuel;
 [_plane] call itc_air_fws_fnc_monitorFuel;
 [_plane] call itc_air_fws_fnc_monitorDamage;
+[_plane] call itc_air_fws_fnc_monitorEnvelope;

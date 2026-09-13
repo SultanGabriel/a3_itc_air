@@ -39,6 +39,15 @@
 
 params ["_plane", "_mode"];
 
+// The MFD invokes this callback for both ON and OFF. Only an engagement
+// starts a controller. An OFF callback ends the existing engagement once.
+if (!ITC_AP_isEnabled) exitWith {[_plane] call itc_air_autopilot_fnc_disengage};
+
+// Reconfiguring an engaged controller must not leave two PFHs running.
+if (!isNil "itc_air_autopilot_pfhId") then {
+	[itc_air_autopilot_pfhId] call CBA_fnc_removePerFrameHandler;
+};
+
 private _vX = velocity _plane select 0;
 private _vY = velocity _plane select 1;
 private _vXY = sqrt (_vX * _vX + _vY * _vY);
@@ -144,23 +153,17 @@ itc_air_autopilot_pfhId = [{
 		(itc_air_autopilot_mode == 2 && (_velocityAngleDiseng || _bankDiseng)) ||
 		!ITC_AP_isEnabled //turn off autpilot if it was toggled off via pressing keybind again
 	) exitWith {
-		//we exit
-		[_this select 1] call CBA_fnc_removePerFrameHandler;
-
-		// FWS Aural Warning
-		if (!(isNil "itc_air_fws_fnc_setWarning")) then {
-			[_plane, "AP_DISC", true] call itc_air_fws_fnc_setWarning;
-		};
+		private _manualDisconnect = !ITC_AP_isEnabled;
+		[_plane] call itc_air_autopilot_fnc_disengage;
 
 		//this value is set to false in key handler where we toggle AP off
-		if (!ITC_AP_isEnabled) exitWith {
+		if (_manualDisconnect) exitWith {
 			hint "Autopilot turned off";
 		};
 
 		//play the sound only if we didn't turn off manually
 		playSound "Click";
 		playSound "Click";
-		ITC_AP_isEnabled = false;
 
 		if ((_plane gethit "HitAvionics") > 0.5) exitWith {
 			hint "Autopilot off - Damaged";

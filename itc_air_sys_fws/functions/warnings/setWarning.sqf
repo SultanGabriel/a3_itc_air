@@ -1,7 +1,8 @@
 params [
     "_vehicle",
     "_id",
-    ["_active", true]
+    ["_active", true],
+    ["_newOccurrence", false]
 ];
 
 if !(
@@ -28,7 +29,7 @@ _definition params [
     "_mode",
     "_audioSequence",
     "_repeatDelay",
-    "_eventTTL",
+    "_audioTTL",
     "_canPreempt",
     "_acknowledgeMode"
 ];
@@ -69,7 +70,7 @@ if (!_active) exitWith {
 // Do not add duplicates
 // -------------------------------------------------------------------------
 
-if (_isActive) exitWith {
+if (_isActive && !_newOccurrence) exitWith {
     true
 };
 
@@ -79,20 +80,31 @@ if (_isActive) exitWith {
 
 private _expiry = -1;
 
-if (_mode isEqualTo "EVENT" && _eventTTL > 0) then {
-    _expiry = CBA_missionTime + _eventTTL;
+if (_audioTTL > 0) then {
+    _expiry = CBA_missionTime + _audioTTL;
 };
 
 
 // Add
 // -------------------------------------------------------------------------
 
-_warnings pushBack [
+// Monotonic per aircraft, including across FWS restarts.
+private _occurrence = (_vehicle getVariable ["itc_air_fws_occurrence", 0]) + 1;
+_vehicle setVariable ["itc_air_fws_occurrence", _occurrence];
+
+private _warning = [
     _id,
+    _occurrence,
     false,
-    _expiry,
-    -1
+    -1,
+    _expiry
 ];
+
+if (_isActive) then {
+    _warnings set [_index, _warning];
+} else {
+    _warnings pushBack _warning;
+};
 
 _vehicle setVariable [
     "itc_air_fws_active",
