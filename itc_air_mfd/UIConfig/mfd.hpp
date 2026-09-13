@@ -37,6 +37,7 @@ class MFD : RscControlsGroup {
         #include "pages\stpt\stpt.hpp"
         #include "pages\options\options.hpp"
         #include "pages\wpn\wpn.hpp"
+        #include "pages\tv\tv.hpp"
 
         #include "components\obsSymbols.hpp"
         class RscPicture_1200: RscPicture
