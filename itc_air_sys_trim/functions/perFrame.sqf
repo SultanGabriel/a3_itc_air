@@ -104,7 +104,7 @@ private _pitchTorque =
 
 _plane addTorque (
     _plane vectorModelToWorld [
-        _pitchTorque,
+        -_pitchTorque,
         0,
         0
     ]

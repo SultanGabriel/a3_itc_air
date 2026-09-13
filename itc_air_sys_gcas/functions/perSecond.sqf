@@ -6,8 +6,7 @@ if (getPos _plane # 2 < 1 || !itc_air_gcas_on) exitWith {
 private _agl =
 getPosATL _plane # 2;
 
-private _gearDown =
-(_plane animationSourcePhase "gear") < 0.5;
+private _gearDown = (_plane animationSourcePhase "gear") < 0.5;
 
 private _collide = [_plane, 1.5] call itc_air_gcas_fnc_checkCollide;
 private _terrainWarning = [_plane, 5.5] call itc_air_gcas_fnc_checkCollide;
@@ -32,10 +31,10 @@ if (_collide) then {
 private _lastCollide = _plane getVariable ["itc_air_gcas_lastCollide", false];
 private _lastTerrain = _plane getVariable ["itc_air_gcas_lastTerrain", false];
 
-if (!(isNil "itc_air_fws_fnc_setWarning")) then {
+if (!(isNil "itc_air_fws_fnc_setWarning") && !_gearDown ) then {
 	// Check for collision warnings
 	    // When gear is down, warning is inhibited
-	if (!_gearDown && _collide != _lastCollide) then {
+	if (_collide != _lastCollide) then {
 		_plane setVariable ["itc_air_gcas_lastCollide", _collide];
 		[_plane, "PULL_UP", _collide] call itc_air_fws_fnc_setWarning;
 	};
@@ -61,7 +60,7 @@ _plane getVariable [
 ];
 
 private _descending =
-    _altASL < (_lastAltASL - 10); // Descending more than 10m since last frame.
+    _altASL < _lastAltASL ; // Descending more than 10m since last frame.
 
 private _alow =
 _plane getVariable [

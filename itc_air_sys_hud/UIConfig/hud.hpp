@@ -131,102 +131,144 @@ class RscTitles {
 
             text = "TRIM";
 
-            x = (safeZoneW / 2) + 0.18;
-            y = (safeZoneH / 2) + 0.035;
-
+            x = 0;
+            y = 0;
             w = 0.06;
             h = 0.035;
 
-            sizeEx = 0.028;
-            style = 0;
+            sizeEx = 0.030;
+            style = 2;
         };
 
 
-        class RscHUDTrimScale : RscHUDTextStptName
+        // Main vertical scale line.
+        class RscHUDTrimScale : RscText
         {
             idc = 1021;
 
-            text = "ND\n|\n|\n|\n|\n|\n|\n|\nNU";
+            text = "";
 
-            x = (safeZoneW / 2) + 0.18;
-            y = (safeZoneH / 2) + 0.07;
+            x = 0;
+            y = 0;
+            w = 0.0025;
+            h = 0.19;
 
-            w = 0.06;
-            h = 0.21;
-
-            sizeEx = 0.025;
-
-            style = 528;
-            lineSpacing = 1;
+            colorBackground[] = {0,1,0,1};
         };
 
 
+        // Moving trim pointer.
         class RscHUDTrimPointer : RscHUDTextStptName
         {
             idc = 1022;
 
-            text = "<";
+            text = "<<|";
 
             x = 0;
             y = 0;
+            w = 0.035;
+            h = 0.035;
 
-            w = 0.03;
-            h = 0.03;
-
-            sizeEx = 0.030;
+            sizeEx = 0.036;
             style = 0;
         };
 
 
+        // T/O label.
         class RscHUDTrimTO : RscHUDTextStptName
         {
             idc = 1023;
 
             text = "T/O";
 
-            x = (safeZoneW / 2) + 0.15;
-            y = (safeZoneH / 2) + 0.11;
-
+            x = 0;
+            y = 0;
             w = 0.04;
-            h = 0.03;
+            h = 0.025;
 
-            sizeEx = 0.022;
-            style = 0;
+            sizeEx = 0.023;
+            style = 1;
         };
 
 
+        // T/O range frame.
         class RscHUDTrimTOBox : RscHUDTextStptName
         {
             idc = 1024;
 
             text = "";
-            style = 64;
 
             x = 0;
             y = 0;
+            w = 0.025;
+            h = 0.02;
 
-            w = 0.016;
-            h = 0.03;
-
+            style = 64;
             colorText[] = {0,1,0,1};
         };
 
 
-        // Neutral trim reference.
-        class RscHUDTrimZero : RscHUDTextStptName
+        // Neutral mark across scale.
+        class RscHUDTrimNeutral : RscText
         {
             idc = 1025;
 
-            text = "O";
+            text = "";
 
             x = 0;
             y = 0;
+            w = 0.022;
+            h = 0.002;
 
-            w = 0.025;
+            colorBackground[] = {0,1,0,1};
+        };
+
+
+        // Upper scale cap.
+        class RscHUDTrimTopCap : RscText
+        {
+            idc = 1026;
+
+            text = "";
+
+            x = 0;
+            y = 0;
+            w = 0.026;
+            h = 0.002;
+
+            colorBackground[] = {0,1,0,1};
+        };
+
+
+        // Lower scale cap.
+        class RscHUDTrimBottomCap : RscHUDTrimTopCap
+        {
+            idc = 1027;
+        };
+
+
+        // Separate labels are safer than multiline text.
+        class RscHUDTrimND : RscHUDTextStptName
+        {
+            idc = 1028;
+
+            text = "ND";
+
+            x = 0;
+            y = 0;
+            w = 0.035;
             h = 0.025;
 
-            sizeEx = 0.020;
+            sizeEx = 0.023;
             style = 2;
+        };
+
+
+        class RscHUDTrimNU : RscHUDTrimND
+        {
+            idc = 1029;
+
+            text = "NU";
         };
       };
     };

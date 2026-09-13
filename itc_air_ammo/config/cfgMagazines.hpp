@@ -24,7 +24,7 @@ class cfgMagazines {
   class PylonRack_3Rnd_LG_scalpel;
   class itc_magazine_bru42 : PylonRack_3Rnd_LG_scalpel {
     count=3;
-    model="\itc_air_ammo\stores\mk82_rack.p3d";
+    // model = "\A3\Weapons_F_Jets\Ammo\PylonPod_3x_Missile_AGM_02_F.p3d"; // FIXME model missing
     descriptionShort = "";
   };
 };

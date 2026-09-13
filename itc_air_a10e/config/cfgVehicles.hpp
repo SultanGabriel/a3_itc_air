@@ -80,11 +80,11 @@ class cfgVehicles {
 
             // Base strength of the physical pitching moment created by trim.
             // This is the main aircraft-specific tuning value.
-            pitchAuthority = 1000.0; // FIXME try like 2000.0
+            pitchAuthority = 2200.0; // FIXME try like 2000.0
 
             // Forward speed in m/s where the speed factor is approximately 1.0.
             // Trim effectiveness scales relative to this speed.
-            referenceSpeed = 100.0;
+            referenceSpeed = 105.0;
 
             // Below this forward speed in m/s, no trim torque is applied.
             // This prevents unrealistic trim effects while nearly stationary.
@@ -92,7 +92,7 @@ class cfgVehicles {
 
             // Maximum allowed speed multiplier for trim effectiveness.
             // This prevents the squared speed scaling from becoming excessive.
-            maximumSpeedFactor = 4.5; // 2->2.5 FIXME then reduce this to 2.5
+            maximumSpeedFactor = 2.0; // 2->2.5 FIXME then reduce this to 2.5
         };
 
         turret = -1;
