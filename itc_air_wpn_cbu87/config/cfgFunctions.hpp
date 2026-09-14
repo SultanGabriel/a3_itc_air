@@ -7,6 +7,9 @@ class CfgFunctions {
       class dispense {
         file = "itc_air_wpn_cbu87\functions\dispense.sqf";
       };
+      class getProfileOptions {
+        file = "itc_air_wpn_cbu87\functions\getProfileOptions.sqf";
+      };
     };
   };
 };

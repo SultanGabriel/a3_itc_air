@@ -11,6 +11,38 @@ if(_tailFuze != "" && _noseFuze != "") then {
   _optionsList pushBack ["fuzeSel","N/T","FUZE","cycle",["N/T","NOSE","TAIL"]];
 };
 
+// Append optional ammo-specific profile options without creating
+// a dependency on the weapon addon that provides them.
+private _providerName =
+  getText (
+    configFile >>
+    "CfgAmmo" >>
+    _ammo >>
+    "ITC_profileOptionsFunction"
+  );
+
+if (_providerName != "") then {
+
+  private _provider =
+    missionNamespace getVariable [
+      _providerName,
+      nil
+    ];
+
+  if (
+    !isNil "_provider" &&
+    {_provider isEqualType {}}
+  ) then {
+
+    private _providerOptions =
+      [_ammo] call _provider;
+
+    if (_providerOptions isEqualType []) then {
+      _optionsList append _providerOptions;
+    };
+  };
+};
+
 
 _guidanceTypes =  (configFile >> "CfgAmmo" >> _ammo >> "ITC_guidanceOptions") call BIS_fnc_getCfgData;
 if(!isNil {_guidanceTypes}) then {

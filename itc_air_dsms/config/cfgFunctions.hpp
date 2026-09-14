@@ -13,6 +13,9 @@ class cfgFunctions {
       class weaponChanged {
         file = "itc_air_dsms\functions\weaponChanged.sqf";
       };
+      class applyProfileVariants {
+        file = "itc_air_dsms\functions\applyProfileVariants.sqf";
+      };
       class setup {
         file = "itc_air_dsms\functions\setup.sqf";
       };

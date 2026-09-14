@@ -18,6 +18,20 @@ if(_type == "bomb") then {
   _plane setVariable ["rip_qty", _rip_qty];
   _plane setVariable ["rip_dist", _rip_dist];
   [_profileVariables] call itc_air_dsms_fnc_profileSetLegacyVariables;
+  // Store current profile values on aircraft.
+  {
+      _plane setVariable [
+          "prof_" + (_x # 0),
+          (_x # 1)
+      ];
+  } forEach _profileVariables;
+
+  // Apply profile options that require a magazine/config variant.
+  [
+      _plane,
+      _weapon,
+      _profileVariables
+  ] call itc_air_dsms_fnc_applyProfileVariants;
 };
 if(_type == "rocket") then {
   itc_air_fcs_ccrpOn = (toLower _release_mode == "ccrp");

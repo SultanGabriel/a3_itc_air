@@ -28,7 +28,12 @@ switch(_btn) do {
         _dataOptions = itc_air_wpt_name;
       };
     };
-    _profileOptions set [_profileOptionsIndex, [_key, _value, _label, _dataType, _dataOptions]];
+    // Update only the mutable fields.
+    // Preserve optional fields such as the CBU-87 variant map at #5.
+    private _profileOption = _profileOptions # _profileOptionsIndex;
+    _profileOption set [1, _value];
+    _profileOption set [4, _dataOptions];
+    _profileOptions set [_profileOptionsIndex, _profileOption];
   };
   case "L5": {
     _profileOptionsIndex = (_profileOptionsIndex + 1) min ((count _profileOptions) - 1);
@@ -64,15 +69,19 @@ switch(_btn) do {
         (_display displayCtrl 121005) ctrlSetText str _value;
       };
       case "profile": {
-        _profile = (_profileOptions # _profileOptionsIndex);
-        _profile set [1, str _value];
-        _profileOptions set [_profileOptionsIndex, _profile];
+        private _profileOption = _profileOptions # _profileOptionsIndex;
+        private _profileValidator = _profileOption # 4;
+        if(typeName _profileValidator != "CODE" || {_value call _profileValidator}) then {
+          _profileOption set [1, str _value];
+          _profileOptions set [_profileOptionsIndex, _profileOption];
+        };
       };
     };
   };
 };
 _display setVariable ["profileOptionIndex", _profileOptionsIndex];
 if(_side in ["L","R","U"]) then {
+  PROFILESAVE;
   [] call itc_air_dsms_fnc_weaponChanged;
 };
 if(count _profileOptions > 0) then {
@@ -81,13 +90,13 @@ if(count _profileOptions > 0) then {
   (_display displayCtrl 121010) ctrlSetText "SEL";
   (_display displayCtrl 121011) ctrlSetText _label;
   (_display displayCtrl 121012) ctrlSetText "VAL";
-  (_display displayCtrl 121013) ctrlSetText _value;
+  (_display displayCtrl 121013) ctrlSetText PROFILEOPTIONVALUE(_key,_value);
 
   _text = "";
   {
     _x params ["_key","_value","_label"];
     _text = _text + "<t color='#00ff00' align='left'>" + _label + ":</t>";
-    _text = _text + "<t color='#00ff00' align='right'>" + _value + "</t>";
+    _text = _text + "<t color='#00ff00' align='right'>" + PROFILEOPTIONVALUE(_key,_value) + "</t>";
     _text = _text + "<br/>";
   }forEach _profileOptions;
   (_display displayCtrl 121100) ctrlSetStructuredText parseText _text;

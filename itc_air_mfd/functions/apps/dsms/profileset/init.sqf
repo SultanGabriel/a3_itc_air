@@ -31,7 +31,7 @@ _text = "";
 {
   _x params ["_key","_value","_label"];
   _text = _text + "<t color='#00ff00' align='left'>" + _label + ":</t>";
-  _text = _text + "<t color='#00ff00' align='right'>" + _value + "</t>";
+  _text = _text + "<t color='#00ff00' align='right'>" + PROFILEOPTIONVALUE(_key,_value) + "</t>";
   _text = _text + "<br/>";
 }forEach _profileOptions;
 _display setVariable ["profileOptionIndex", 0];
@@ -40,6 +40,6 @@ if(count _profileOptions > 0) then {
     (_display displayCtrl 121010) ctrlSetText "SEL";
     (_display displayCtrl 121011) ctrlSetText _label;
     (_display displayCtrl 121012) ctrlSetText "VAL";
-    (_display displayCtrl 121013) ctrlSetText _value;
+    (_display displayCtrl 121013) ctrlSetText PROFILEOPTIONVALUE(_key,_value);
 };
 (_display displayCtrl 121100) ctrlSetStructuredText parseText _text;

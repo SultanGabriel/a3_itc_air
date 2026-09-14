@@ -2,3 +2,4 @@
 #define PROFILEEDITNAME (_display getVariable "profile_listSelected")
 #define PROFILESAVE ((vehicle player) getVariable "profiles") set [_profileIndex, _profile]
 #define CYCLEVALUE(OPTIONS,VALUE) OPTIONS select (if((OPTIONS find VALUE) == (count OPTIONS) - 1) then [{0},{(OPTIONS find VALUE) + 1}])
+#define PROFILEOPTIONVALUE(KEY,VALUE) (if((KEY) == "hof") then [{format["%1 M",(VALUE)]},{format["%1",(VALUE)]}])

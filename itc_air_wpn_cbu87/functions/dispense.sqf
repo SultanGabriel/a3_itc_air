@@ -6,7 +6,8 @@ if(_projectile getVariable ["itc_air_cbu87_hofHandler", false]) exitWith {};
 
 _projectile setVariable ["itc_air_cbu87_hofHandler", true];
 
-private _hofM = _plane getVariable ["prof_hof", 50];
+// FIXME check this thoroughly and maybe update the default
+private _hofM = parseNumber (str (_plane getVariable ["prof_hof", 100]));
 
 [{
   (_this # 0) params ["_projectile","_hofM"];
