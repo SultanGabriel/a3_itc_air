@@ -1,11 +1,39 @@
-if(isNil{ITC_AIR_SOI_SLEW}) then {
-  ITC_AIR_SOI_SLEW = _this;
-} else {
-  ITC_AIR_SOI_SLEW = ITC_AIR_SOI_SLEW vectorAdd _this;
-  ITC_AIR_SOI_SLEW = [
-    (ITC_AIR_SOI_SLEW # 0) max -1 min 1,
-    (ITC_AIR_SOI_SLEW # 1) max -1 min 1,
-    (ITC_AIR_SOI_SLEW # 2) max -1 min 1
-  ];
+params [
+    "_key",
+    "_dir"
+];
+
+private _vehicle = vehicle player;
+
+if !(
+    "SOI" in
+    (_vehicle getVariable [
+        "itc_air_systems",
+        []
+    ])
+) exitWith {
+    false
 };
+
+
+if (
+    isNil "itc_air_soi_switchDownAt"
+) then {
+    itc_air_soi_switchDownAt =
+        createHashMap;
+};
+
+
+private _id = format [
+    "%1_%2",
+    toUpper _key,
+    toUpper _dir
+];
+
+itc_air_soi_switchDownAt set [
+    _id,
+    diag_tickTime
+];
+
+
 false

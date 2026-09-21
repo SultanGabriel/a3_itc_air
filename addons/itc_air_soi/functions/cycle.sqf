@@ -14,6 +14,19 @@ while {!_foundNext} do {
   };
 };
 */
+
+private _vehicle = vehicle player;
+// prevents a native global action from trying to cycle old providers while the player is not in an aircraft with the SOI system
+if !(
+    "SOI" in
+    (_vehicle getVariable [
+        "itc_air_systems",
+        []
+    ])
+) exitWith {
+    false
+};
+
 private _current = (itc_air_soi_providers find itc_air_soi_provider) max 0;
 private _foundNext = false;
 private _timesCycled = 0;

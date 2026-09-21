@@ -10,21 +10,102 @@ itc_air_soi_provider = "";
 //["ITC Air","itc_air_soi_slew","SOI Slew",
 //{[false] call itc_air_mfd_fnc_soi_slew;},"",[20, [false, false, false]]] call CBA_fnc_addKeybind;
 
-["ITC Air","itc_air_soi_up", "SOI UP",
-{[0,1,0] call itc_air_soi_fnc_down;false},
-{call itc_air_soi_fnc_up;false},[200, [false, false, false]],true] call CBA_fnc_addKeybind;
+// FIXME to be deprecated 
+// ["ITC Air","itc_air_soi_up", "SOI UP",
+// {[0,1,0] call itc_air_soi_fnc_down;false},
+// {call itc_air_soi_fnc_up;false},[200, [false, false, false]],true] call CBA_fnc_addKeybind;
 
-["ITC Air","itc_air_soi_dn", "SOI DOWN",
-{[0,-1,0] call itc_air_soi_fnc_down;false},
-{call itc_air_soi_fnc_up;false}, [208, [false, false, false]],true] call CBA_fnc_addKeybind;
+// ["ITC Air","itc_air_soi_dn", "SOI DOWN",
+// {[0,-1,0] call itc_air_soi_fnc_down;false},
+// {call itc_air_soi_fnc_up;false}, [208, [false, false, false]],true] call CBA_fnc_addKeybind;
 
-["ITC Air","itc_air_soi_lf", "SOI LEFT",
-{[-1,0,0] call itc_air_soi_fnc_down;false},
-{call itc_air_soi_fnc_up;false}, [203, [false, false, false]],true] call CBA_fnc_addKeybind;
+// ["ITC Air","itc_air_soi_lf", "SOI LEFT",
+// {[-1,0,0] call itc_air_soi_fnc_down;false},
+// {call itc_air_soi_fnc_up;false}, [203, [false, false, false]],true] call CBA_fnc_addKeybind;
 
-["ITC Air","itc_air_soi_rt", "SOI RIGHT",
-{[1,0,0] call itc_air_soi_fnc_down;false},
-{call itc_air_soi_fnc_up;false}, [205, [false, false, false]],true] call CBA_fnc_addKeybind;
+// ["ITC Air","itc_air_soi_rt", "SOI RIGHT",
+// {[1,0,0] call itc_air_soi_fnc_down;false},
+// {call itc_air_soi_fnc_up;false}, [205, [false, false, false]],true] call CBA_fnc_addKeybind;
+[
+    "ITC Air",
+    "itc_air_soi_up",
+    "SOI UP",
+    {
+        ["UP", true]
+            call itc_air_soi_fnc_slewInput;
+
+        false
+    },
+    {
+        ["UP", false]
+            call itc_air_soi_fnc_slewInput;
+
+        false
+    },
+    [200, [false, false, false]]
+] call CBA_fnc_addKeybind;
+
+
+[
+    "ITC Air",
+    "itc_air_soi_dn",
+    "SOI DOWN",
+    {
+        ["DOWN", true]
+            call itc_air_soi_fnc_slewInput;
+
+        false
+    },
+    {
+        ["DOWN", false]
+            call itc_air_soi_fnc_slewInput;
+
+        false
+    },
+    [208, [false, false, false]]
+] call CBA_fnc_addKeybind;
+
+
+[
+    "ITC Air",
+    "itc_air_soi_lf",
+    "SOI LEFT",
+    {
+        ["LEFT", true]
+            call itc_air_soi_fnc_slewInput;
+
+        false
+    },
+    {
+        ["LEFT", false]
+            call itc_air_soi_fnc_slewInput;
+
+        false
+    },
+    [203, [false, false, false]]
+] call CBA_fnc_addKeybind;
+
+
+[
+    "ITC Air",
+    "itc_air_soi_rt",
+    "SOI RIGHT",
+    {
+        ["RIGHT", true]
+            call itc_air_soi_fnc_slewInput;
+
+        false
+    },
+    {
+        ["RIGHT", false]
+            call itc_air_soi_fnc_slewInput;
+
+        false
+    },
+    [205, [false, false, false]]
+] call CBA_fnc_addKeybind;
+
+
 
 private _joystickKeys = [
   ["TMS","UP",[200,[false,false,true]]],
@@ -58,4 +139,14 @@ private _joystickKeys = [
 //{call itc_air_mfd_fnc_soi_action;false},
 //{call itc_air_soi_fnc_up;false}, [208, [false, true, false]],true] call CBA_fnc_addKeybind;
 
-itc_air_soi_down_time = 0;
+itc_air_soi_slewHeld = [
+    false,
+    false,
+    false,
+    false
+];
+
+itc_air_soi_switchDownAt =
+    createHashMap;
+
+ITC_AIR_SOI_SLEW = nil;

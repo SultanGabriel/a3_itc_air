@@ -1,5 +1,6 @@
 ITC_AIR_MFD_CAMS = [];
 
+// FIXME Deprecate old keybind syntax
 ["ITC Air","itc_air_mfd_cursor_toggle", "Show MFD cursor",{
   //(findDisplay 19992) closeDisplay 2;
   //if(!isNil{uiNameSpace getVariable "ITC_AIR_MFD_L"} || !isNil{uiNameSpace getVariable "ITC_AIR_MFD_R"} ) then {

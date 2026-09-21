@@ -7,7 +7,12 @@ _vehicle = vehicle player;
 
 [{
   _this select 0 params ["_display","_vehicle"];
-  if(!alive player || !((vehicle player) isKindOf "Air") || !alive _vehicle) exitWith { //ensure player is alive and dialog is open
+    if (
+        isNull _display ||
+        !alive player ||
+        !((vehicle player) isKindOf "Air") ||
+        !alive _vehicle
+    ) exitWith { //ensure player is alive and dialog is open
     [_this select 1] call CBA_fnc_removePerFrameHandler;
     (findDisplay 1501) closeDisplay 2;
   };

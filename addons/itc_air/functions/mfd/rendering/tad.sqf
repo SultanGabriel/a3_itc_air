@@ -41,7 +41,7 @@ _sadl = missionNameSpace getVariable "SADL";
         _map drawIcon [format ["itc_air\data\UI\SADL\R%1.paa", _nums select 1], [1,1,1,1], getPos _x,  15,15, 0,  ".", 0, 0.01];
         if(_x getVariable "SADL_SPI") then {
           _map drawLine [getPos _x, (_x getVariable "tgp_dir") select 1, [0,0,1,1]];
-          _map drawIcon [format ["itc_air\data\UI\SADL\Mini-SPI.paa", _nums select 0], [1,1,1,1], (_x getVariable "tgp_dir") select 1,  15,15, 0,  ".", 0, 0.01];
+          _map drawIcon [format "itc_air\data\UI\SADL\Mini-SPI.paa", [1,1,1,1], (_x getVariable "tgp_dir") select 1,  15,15, 0,  ".", 0, 0.01];
         };
       }
 }forEach _sadl;

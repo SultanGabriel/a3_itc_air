@@ -14,6 +14,32 @@ class UserActionGroups
             "ITC_AIR_TRIM_PITCH_UP",
             "ITC_AIR_TRIM_PITCH_DOWN",
             "ITC_AIR_TRIM_PITCH_RESET"
+        
+
+            // SOI
+            "ITC_AIR_SOI_CYCLE",
+
+            "ITC_AIR_SOI_SLEW_UP",
+            "ITC_AIR_SOI_SLEW_DOWN",
+            "ITC_AIR_SOI_SLEW_LEFT",
+            "ITC_AIR_SOI_SLEW_RIGHT",
+
+            // TMS
+            "ITC_AIR_SOI_TMS_UP",
+            "ITC_AIR_SOI_TMS_DOWN",
+            "ITC_AIR_SOI_TMS_LEFT",
+            "ITC_AIR_SOI_TMS_RIGHT",
+
+            // DMS
+            "ITC_AIR_SOI_DMS_UP",
+            "ITC_AIR_SOI_DMS_DOWN",
+            "ITC_AIR_SOI_DMS_LEFT",
+            "ITC_AIR_SOI_DMS_RIGHT",
+
+            // Pitch Trim
+            "ITC_AIR_TRIM_PITCH_UP",
+            "ITC_AIR_TRIM_PITCH_DOWN",
+            "ITC_AIR_TRIM_PITCH_RESET"
         };
     };
 };
@@ -22,6 +48,214 @@ class UserActionGroups
 // FIXME migrate all controls slowly to here
 class CfgUserActions
 {
+    // // FIXME SX IMPORTANT 
+    // // FIXME SX IMPORTANT 
+    // // FIXME SX IMPORTANT 
+    // ------------------------------------------------------------------------
+    // System SOI
+    // ------------------------------------------------------------------------
+    // SOI Cycle
+    class ITC_AIR_SOI_CYCLE
+    {
+        displayName = "SOI Cycle";
+        tooltip = "Cycle the active Sensor of Interest";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_cycle') then { call itc_air_soi_fnc_cycle; };";
+    };
+
+    // SOI Slew
+    // | `ITC_AIR_SOI_CYCLE`         | Cycle SOI           |
+    // | `ITC_AIR_SOI_UP`            | Slew up             |
+    // | `ITC_AIR_SOI_DOWN`          | Slew down           |
+    // | `ITC_AIR_SOI_LEFT`          | Slew left           |
+    // | `ITC_AIR_SOI_RIGHT`         | Slew right          |
+
+    class ITC_AIR_SOI_SLEW_UP
+    {
+        displayName = "SOI Slew Up";
+        tooltip = "Slew the active Sensor of Interest up";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_slewInput') then { ['UP', true] call itc_air_soi_fnc_slewInput; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_slewInput') then { ['UP', false] call itc_air_soi_fnc_slewInput; };";
+    };
+
+
+    class ITC_AIR_SOI_SLEW_DOWN
+    {
+        displayName = "SOI Slew Down";
+        tooltip = "Slew the active Sensor of Interest down";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_slewInput') then { ['DOWN', true] call itc_air_soi_fnc_slewInput; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_slewInput') then { ['DOWN', false] call itc_air_soi_fnc_slewInput; };";
+    };
+
+
+    class ITC_AIR_SOI_SLEW_LEFT
+    {
+        displayName = "SOI Slew Left";
+        tooltip = "Slew the active Sensor of Interest left";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_slewInput') then { ['LEFT', true] call itc_air_soi_fnc_slewInput; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_slewInput') then { ['LEFT', false] call itc_air_soi_fnc_slewInput; };";
+    };
+
+
+    class ITC_AIR_SOI_SLEW_RIGHT
+    {
+        displayName = "SOI Slew Right";
+        tooltip = "Slew the active Sensor of Interest right";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_slewInput') then { ['RIGHT', true] call itc_air_soi_fnc_slewInput; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_slewInput') then { ['RIGHT', false] call itc_air_soi_fnc_slewInput; };";
+    };
+
+    // TMS 
+
+    // | `ITC_AIR_SOI_TMS_UP`        | TMS up              |
+    // | `ITC_AIR_SOI_TMS_DOWN`      | TMS down            |
+    // | `ITC_AIR_SOI_TMS_LEFT`      | TMS left            |
+    // | `ITC_AIR_SOI_TMS_RIGHT`     | TMS right           |
+
+    class ITC_AIR_SOI_TMS_UP
+    {
+        displayName = "TMS Up";
+        tooltip = "Send TMS Up to the active Sensor of Interest";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_ms_down') then { ['TMS', 'UP'] call itc_air_soi_fnc_ms_down; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_ms_up') then { ['TMS', 'UP'] call itc_air_soi_fnc_ms_up; };";
+    };
+
+
+    class ITC_AIR_SOI_TMS_DOWN
+    {
+        displayName = "TMS Down";
+        tooltip = "Send TMS Down to the active Sensor of Interest";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_ms_down') then { ['TMS', 'DOWN'] call itc_air_soi_fnc_ms_down; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_ms_up') then { ['TMS', 'DOWN'] call itc_air_soi_fnc_ms_up; };";
+    };
+
+
+    class ITC_AIR_SOI_TMS_LEFT
+    {
+        displayName = "TMS Left";
+        tooltip = "Send TMS Left to the active Sensor of Interest";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_ms_down') then { ['TMS', 'LEFT'] call itc_air_soi_fnc_ms_down; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_ms_up') then { ['TMS', 'LEFT'] call itc_air_soi_fnc_ms_up; };";
+    };
+
+
+    class ITC_AIR_SOI_TMS_RIGHT
+    {
+        displayName = "TMS Right";
+        tooltip = "Send TMS Right to the active Sensor of Interest";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_ms_down') then { ['TMS', 'RIGHT'] call itc_air_soi_fnc_ms_down; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_ms_up') then { ['TMS', 'RIGHT'] call itc_air_soi_fnc_ms_up; };";
+    };
+
+    // DMS 
+
+    // | `ITC_AIR_SOI_DMS_UP`        | DMS up              |
+    // | `ITC_AIR_SOI_DMS_DOWN`      | DMS down            |
+    // | `ITC_AIR_SOI_DMS_LEFT`      | DMS left            |
+    // | `ITC_AIR_SOI_DMS_RIGHT`     | DMS right           |
+
+    class ITC_AIR_SOI_DMS_UP
+    {
+        displayName = "DMS Up";
+        tooltip = "Send DMS Up to the active Sensor of Interest";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_ms_down') then { ['DMS', 'UP'] call itc_air_soi_fnc_ms_down; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_ms_up') then { ['DMS', 'UP'] call itc_air_soi_fnc_ms_up; };";
+    };
+
+
+    class ITC_AIR_SOI_DMS_DOWN
+    {
+        displayName = "DMS Down";
+        tooltip = "Send DMS Down to the active Sensor of Interest";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_ms_down') then { ['DMS', 'DOWN'] call itc_air_soi_fnc_ms_down; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_ms_up') then { ['DMS', 'DOWN'] call itc_air_soi_fnc_ms_up; };";
+    };
+
+
+    class ITC_AIR_SOI_DMS_LEFT
+    {
+        displayName = "DMS Left";
+        tooltip = "Send DMS Left to the active Sensor of Interest";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_ms_down') then { ['DMS', 'LEFT'] call itc_air_soi_fnc_ms_down; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_ms_up') then { ['DMS', 'LEFT'] call itc_air_soi_fnc_ms_up; };";
+    };
+
+
+    class ITC_AIR_SOI_DMS_RIGHT
+    {
+        displayName = "DMS Right";
+        tooltip = "Send DMS Right to the active Sensor of Interest";
+
+        onActivate = "if (!isNil 'itc_air_soi_fnc_ms_down') then { ['DMS', 'RIGHT'] call itc_air_soi_fnc_ms_down; };";
+        onDeactivate = "if (!isNil 'itc_air_soi_fnc_ms_up') then { ['DMS', 'RIGHT'] call itc_air_soi_fnc_ms_up; };";
+    };
+    
+    
+    // MFD 
+
+    // | `ITC_AIR_MFD_CURSOR_TOGGLE` | MFD cursor          |
+    // | `ITC_AIR_MFD_OPEN_L`        | Left MFD            |
+    // | `ITC_AIR_MFD_OPEN_R`        | Right MFD           |
+    // | `ITC_AIR_MFD_OPEN_TGP`      | WSO/TGP display     |
+    class ITC_AIR_MFD_CURSOR_OPEN
+    {
+        displayName = "MFD Cursor Open";
+        tooltip = "Open the MFD and UFC mouse controls";
+
+        onActivate =
+            "if (!isNil 'itc_air_mfd_fnc_cursorOpen') then { call itc_air_mfd_fnc_cursorOpen; };";
+    };
+
+
+    class ITC_AIR_MFD_CURSOR_CLOSE
+    {
+        displayName = "MFD Cursor Close";
+        tooltip = "Close the MFD and UFC mouse controls";
+
+        onActivate =
+            "if (!isNil 'itc_air_mfd_fnc_cursorClose') then { call itc_air_mfd_fnc_cursorClose; };";
+    };
+
+
+    class ITC_AIR_MFD_TOGGLE_LEFT
+    {
+        displayName = "Toggle Left MFD";
+        tooltip = "Show or hide the left MFD";
+
+        onActivate =
+            "if (!isNil 'itc_air_mfd_fnc_toggleDisplay') then { ['L'] call itc_air_mfd_fnc_toggleDisplay; };";
+    };
+
+
+    class ITC_AIR_MFD_TOGGLE_RIGHT
+    {
+        displayName = "Toggle Right MFD";
+        tooltip = "Show or hide the right MFD";
+
+        onActivate =
+            "if (!isNil 'itc_air_mfd_fnc_toggleDisplay') then { ['R'] call itc_air_mfd_fnc_toggleDisplay; };";
+    };
+    // Weapons 
+
+    // | `ITC_AIR_FCS_RELEASE`       | Weapon release      |
+    // | `ITC_AIR_WPT_NEXT`          | Next steerpoint     |
+    // | `ITC_AIR_WPT_PREV`          | Previous steerpoint |
+
+
+    // ------------------------------------------------------------------------
+    // System FWS 
+    // ------------------------------------------------------------------------
     class ITC_AIR_FWS_ACK
     {
         displayName = "FWS Acknowledge";
@@ -31,6 +265,9 @@ class CfgUserActions
     };
 
 
+    // ------------------------------------------------------------------------
+    // System Trim 
+    // ------------------------------------------------------------------------
     class ITC_AIR_TRIM_PITCH_UP
     {
         displayName = "Pitch Trim Nose Up";

@@ -35,6 +35,20 @@ class cfgFunctions {
       class rescaleMFDControl {
         file = "itc_air_mfd\functions\util\rescaleMFDControl.sqf";
       };
+      class cursorOpen
+      {
+          file = "itc_air_mfd\functions\cursorOpen.sqf";
+      };
+
+      class cursorClose
+      {
+          file = "itc_air_mfd\functions\cursorClose.sqf";
+      };
+
+      class toggleDisplay
+      {
+          file = "itc_air_mfd\functions\toggleDisplay.sqf";
+      };
     };
   };
 };
