@@ -1,0 +1,8 @@
+name = "ITC Air"
+prefix = "itc_air"
+
+[version]
+major = 0
+minor = 1
+patch = 0
+git_hash = 0
