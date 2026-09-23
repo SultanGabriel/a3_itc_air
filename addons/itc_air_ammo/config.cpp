@@ -8,7 +8,7 @@ class CfgPatches {
         requiredAddons[] = {"CBA_Extended_EventHandlers"};
     };
 };
-#include "config\cfgAmmo.hpp"
+#include "config\CfgAmmo.hpp"
 #include "config\cfgMagazines.hpp"
-#include "config\cfgFuzes.hpp"
-#include "config\cfgFunctions.hpp"
+#include "config\CfgFuzes.hpp"
+#include "config\CfgFunctions.hpp"
