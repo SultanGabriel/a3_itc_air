@@ -91,6 +91,6 @@ class RscTitles {
           style = 1;
         };*/
       };
-    }
+    };
   };
 };

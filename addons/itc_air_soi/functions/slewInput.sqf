@@ -6,21 +6,21 @@ params [
 private _vehicle = vehicle player;
 
 if (
-_active &&
-{
-    !(
-    "SOI" in
-    (_vehicle getVariable [
-        "itc_air_systems",
-        []
-    ])
-    )
-}
-) exitwith {
+    _active &&
+    {
+        !(
+            "SOI" in
+            (_vehicle getVariable [
+                "itc_air_systems",
+                []
+            ])
+        )
+    }
+) exitWith {
     false
 };
 
-if (isnil "itc_air_soi_slewHeld") then {
+if (isNil "itc_air_soi_slewHeld") then {
     itc_air_soi_slewHeld = [
         false, // UP
         false, // doWN
@@ -32,12 +32,12 @@ if (isnil "itc_air_soi_slewHeld") then {
 private _index =
 [
     "UP",
-    "doWN",
+    "DOWN",
     "LEFT",
     "RIGHT"
 ] find (toUpper _direction);
 
-if (_index < 0) exitwith {
+if (_index < 0) exitWith {
     false
 };
 
@@ -71,7 +71,7 @@ if (_right) then {
     _slew = _slew vectorAdd [1, 0, 0];
 };
 
-if (_slew isEqualto [0, 0, 0]) then {
+if (_slew isEqualTo [0, 0, 0]) then {
     ITC_AIR_SOI_SLEW = nil;
 } else {
     ITC_AIR_SOI_SLEW = _slew;

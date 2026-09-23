@@ -26,7 +26,7 @@ class cfgFunctions {
       class slewInput
       {
           file = "itc_air_soi\functions\slewInput.sqf";
-      }
+      };
       class perFrame {
         file = "itc_air_soi\functions\perFrame.sqf";
       };

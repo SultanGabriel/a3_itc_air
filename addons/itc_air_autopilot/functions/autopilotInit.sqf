@@ -18,30 +18,7 @@
 ITC_AP_mode = 0;
 ITC_AP_isEnabled = false;
 
-["ITC", "ITC_ToggleApMode", ["Toggle autopilot mode", "Switches between ALT, ALT/HDG, PATH"], {}, {
-	if (!(vehicle player isKindOf "Plane") && {driver vehicle player == player}) exitWith {};
-	if("AUTOPILOT" in (vehicle player getVariable ["itc_air_systems",[]])) then {
-		call itc_air_autopilot_fnc_autopilotToggleMode;
-	};
-}, [0x0F, [true, false, false]]] call CBA_fnc_addKeybind;
-
-["ITC", "ITC_enableAutopilot", ["Enable autopilot", "Enables autopilot"], {}, {
-	if (!(vehicle player isKindOf "Plane") && {driver vehicle player == player}) exitWith {};
-	if("AUTOPILOT" in (vehicle player getVariable ["itc_air_systems",[]])) then {
-		if (ITC_AP_isEnabled) then {
-			[vehicle player] call itc_air_autopilot_fnc_disengage;
-			if(ITC_AP_mode == 3) then {
-				ITC_AP_mode = ["ALT","ALT/HDG","PATH"] find ITC_AP_modeString;
-			};
-		} else {
-			ITC_AP_isEnabled = true;
-			[vehicle player, ITC_AP_mode] call itc_air_autopilot_fnc_autopilot;
-		};
-	};
-}, [0x0F, [false, true, false]]] call CBA_fnc_addKeybind;
-
-
-//TODO
+// TODO
 //* debug macro
 //* use something better than hint for user feedback
 //* move macro values to config (?)

@@ -3,5 +3,8 @@
 gbu*.paa
 gbu*.png
 
+.hemtt-work
+.hemttout
 
+build
 tools/*

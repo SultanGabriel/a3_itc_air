@@ -34,7 +34,9 @@ class CfgPatches {
 #include "cfgMagazines.hpp"
 #include "cfgWeapons.hpp"
 #include "cfgVehicles.hpp"
+
 #include "config\cfgUserActions.hpp"
+#include "config\cfgDefaultKeysPresets.hpp"
 
 #include "Dialog.hpp"
 #include "config\tgp.hpp"

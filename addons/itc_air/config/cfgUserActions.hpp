@@ -13,8 +13,7 @@ class UserActionGroups
             // Pitch Trim
             "ITC_AIR_TRIM_PITCH_UP",
             "ITC_AIR_TRIM_PITCH_DOWN",
-            "ITC_AIR_TRIM_PITCH_RESET"
-        
+            "ITC_AIR_TRIM_PITCH_RESET",
 
             // SOI
             "ITC_AIR_SOI_CYCLE",
@@ -36,10 +35,23 @@ class UserActionGroups
             "ITC_AIR_SOI_DMS_LEFT",
             "ITC_AIR_SOI_DMS_RIGHT",
 
-            // Pitch Trim
-            "ITC_AIR_TRIM_PITCH_UP",
-            "ITC_AIR_TRIM_PITCH_DOWN",
-            "ITC_AIR_TRIM_PITCH_RESET"
+            // MFD
+            "ITC_AIR_MFD_CURSOR_OPEN",
+            "ITC_AIR_MFD_CURSOR_CLOSE",
+            "ITC_AIR_MFD_TOGGLE_LEFT",
+            "ITC_AIR_MFD_TOGGLE_RIGHT",
+            "ITC_AIR_MFD_OPEN_TGP",
+            
+            // FCS
+            "ITC_AIR_FCS_RELEASE",
+
+            // WPT
+            "ITC_AIR_WPT_NEXT",
+            "ITC_AIR_WPT_PREV",
+
+            // Autopilot
+            "ITC_AIR_AP_TOGGLE",
+            "ITC_AIR_AP_MODE",
         };
     };
 };
@@ -48,9 +60,6 @@ class UserActionGroups
 // FIXME migrate all controls slowly to here
 class CfgUserActions
 {
-    // // FIXME SX IMPORTANT 
-    // // FIXME SX IMPORTANT 
-    // // FIXME SX IMPORTANT 
     // ------------------------------------------------------------------------
     // System SOI
     // ------------------------------------------------------------------------
@@ -246,12 +255,75 @@ class CfgUserActions
         onActivate =
             "if (!isNil 'itc_air_mfd_fnc_toggleDisplay') then { ['R'] call itc_air_mfd_fnc_toggleDisplay; };";
     };
+
+    // WSO/TGP dialog
+    class ITC_AIR_MFD_OPEN_TGP
+    {
+        displayName = "Open WSO TGP";
+        tooltip = "Open the legacy WSO targeting pod display";
+
+        onActivate =
+            "private _vehicle = vehicle player; if (!dialog && {_vehicle getVariable ['wso', false]} && {player != driver _vehicle}) then { createDialog 'TGP_DIALOG'; };";
+    };
+
     // Weapons 
 
     // | `ITC_AIR_FCS_RELEASE`       | Weapon release      |
+
+    class ITC_AIR_FCS_RELEASE
+    {
+        displayName = "Weapon Release";
+        tooltip = "Release the selected weapon";
+
+        onActivate =
+            "if (!isNil 'itc_air_fcs_fnc_releaseDown' && {'FCS' in ((vehicle player) getVariable ['itc_air_systems', []])}) then { call itc_air_fcs_fnc_releaseDown; };";
+
+        onDeactivate =
+            "if (!isNil 'itc_air_fcs_fnc_releaseUp') then { call itc_air_fcs_fnc_releaseUp; };";
+    };
+
+    // Nav
     // | `ITC_AIR_WPT_NEXT`          | Next steerpoint     |
     // | `ITC_AIR_WPT_PREV`          | Previous steerpoint |
 
+    class ITC_AIR_WPT_NEXT
+    {
+        displayName = "Next Steerpoint";
+        tooltip = "Select the next steerpoint";
+
+        onActivate =
+            "if (!isNil 'itc_air_wpt_fnc_next' && {'WPT' in ((vehicle player) getVariable ['itc_air_systems', []])}) then { call itc_air_wpt_fnc_next; };";
+    };
+
+
+    class ITC_AIR_WPT_PREV
+    {
+        displayName = "Previous Steerpoint";
+        tooltip = "Select the previous steerpoint";
+
+        onActivate =
+            "if (!isNil 'itc_air_wpt_fnc_prev' && {'WPT' in ((vehicle player) getVariable ['itc_air_systems', []])}) then { call itc_air_wpt_fnc_prev; };";
+    };
+    // ------------------------------------------------------------------------
+    // Autopilot
+    // ------------------------------------------------------------------------
+
+    class ITC_AIR_AP_TOGGLE
+    {
+        displayName = "Autopilot Toggle";
+        tooltip = "Enable or disable the autopilot";
+
+        onDeactivate = "private _vehicle = vehicle player; if (!(_vehicle isKindOf 'Plane') || {driver _vehicle != player}) exitWith {}; if (!('AUTOPILOT' in (_vehicle getVariable ['itc_air_systems', []]))) exitWith {}; if (ITC_AP_isEnabled) then { [_vehicle] call itc_air_autopilot_fnc_disengage; if (ITC_AP_mode == 3) then { ITC_AP_mode = ['ALT','ALT/HDG','PATH'] find ITC_AP_modeString; }; } else { ITC_AP_isEnabled = true; [_vehicle, ITC_AP_mode] call itc_air_autopilot_fnc_autopilot; };";
+    };
+
+
+    class ITC_AIR_AP_MODE
+    {
+        displayName = "Autopilot Mode";
+        tooltip = "Cycle the autopilot mode";
+
+        onDeactivate = "private _vehicle = vehicle player; if (!(_vehicle isKindOf 'Plane') || {driver _vehicle != player}) exitWith {}; if ('AUTOPILOT' in (_vehicle getVariable ['itc_air_systems', []])) then { call itc_air_autopilot_fnc_autopilotToggleMode; };";
+    };
 
     // ------------------------------------------------------------------------
     // System FWS 
@@ -263,7 +335,6 @@ class CfgUserActions
 
         onActivate = "if (!isNil 'itc_air_fws_fnc_acknowledge') then { [vehicle player] call itc_air_fws_fnc_acknowledge; };";
     };
-
 
     // ------------------------------------------------------------------------
     // System Trim 
