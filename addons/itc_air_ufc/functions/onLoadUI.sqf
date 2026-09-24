@@ -3,7 +3,7 @@ params ["_display", "_variable"];
 //[_display,(configFile >> "ITC_AIR_MFDButtons" >> "MFDButtons_R"),ITC_AIR_MFD_SCALE] call itc_air_mfd_fnc_rescaleControlsGroup;
 //_this call test_fnc_resizeMFDBtn;
 _display setVariable ["displayVariable", _variable];
-_vehicle = vehicle player;
+private _vehicle = vehicle player;
 
 [{
   _this select 0 params ["_display","_vehicle"];
@@ -32,12 +32,48 @@ _vehicle = vehicle player;
     case "STATNAV":{
       ITC_AIR_UFC_CTXT_COLUMNS_TXT set [0,str itc_air_wpt_tacanCSEL];
       ITC_AIR_UFC_CTXT_COLUMNS_TXT set [4,str itc_air_wpt_tacanCDE];
-      if ("AP-MAN" in ((vehicle player) getVariable "itc_air_systems")) then {
-        ITC_AIR_UFC_CTXT_COLUMNS_TXT set [5,str round ITC_AP_TargetAlt];
-        if (ITC_AP_mode isEqualTo 1) then {
-          ITC_AIR_UFC_CTXT_COLUMNS_TXT set [1,str round ITC_AP_TargetHdg];
+        // FIXME legacy idk 
+      
+        if ("AUTOPILOT" in (_vehicle getVariable ["itc_air_systems", []])) then {
+
+            private _ap = [_vehicle] call itc_air_autopilot_fnc_ap_getState;
+
+            private _target = _ap getOrDefault [
+                "target",
+                createHashMap
+            ];
+
+            private _mode =
+                _ap getOrDefault [
+                    "mode",
+                    "ALT"
+                ];
+
+            private _targetAlt =
+                _target getOrDefault [
+                    "altitude",
+                    getPosASL _vehicle # 2
+                ];
+
+            ITC_AIR_UFC_CTXT_COLUMNS_TXT set [
+                5,
+                str round _targetAlt
+            ];
+
+            if (_mode isEqualTo "ALT/HDG") then {
+
+                private _targetHdg =
+                    _target getOrDefault [
+                        "heading",
+                        getDir _vehicle
+                    ];
+
+                ITC_AIR_UFC_CTXT_COLUMNS_TXT set [
+                    1,
+                    str round _targetHdg
+                ];
+            };
         };
-      };
     };
   };
 

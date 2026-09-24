@@ -23,6 +23,10 @@ class cfgFunctions {
       {
           file = "itc_air_sys_hud\functions\printTrim.sqf";
       };
+      class printAutopilot
+      {
+          file = "itc_air_sys_hud\functions\printAutopilot.sqf";
+      };
       class drawHandler {
         file = "itc_air_sys_hud\functions\drawHandler.sqf";
       };

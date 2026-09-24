@@ -4,8 +4,11 @@ class CfgPatches {
         author = "BlackhawkPL";
         units[] = {};
         weapons[] = {};
-        requiredVersion = 1.0;
-        requiredAddons[] = {};
+        requiredVersion = 1.0; // FIXME consider increasing versions?
+        requiredAddons[] = {
+            "A3_Air_F",
+            "cba_main"
+        };
     };
 };
 

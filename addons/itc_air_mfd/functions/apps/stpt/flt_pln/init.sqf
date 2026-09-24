@@ -7,6 +7,9 @@ params ["_display"];
 (_display displayCtrl T4) ctrlSetText "MRK";
 
 (_display displayCtrl L4) ctrlSetText "DEL";
+if (_display getVariable ["itc_air_ap_returnToPage", false]) then {
+  (_display displayCtrl L3) ctrlSetText "GOTO";
+};
 
 (_display displayCtrl R3) ctrlSetText "UP";
 (_display displayCtrl R34) ctrlSetText "ORD";

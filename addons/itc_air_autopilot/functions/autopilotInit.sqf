@@ -15,9 +15,6 @@
  * Public: No
  */
 
-ITC_AP_mode = 0;
-ITC_AP_isEnabled = false;
-
 // TODO
 //* debug macro
 //* use something better than hint for user feedback

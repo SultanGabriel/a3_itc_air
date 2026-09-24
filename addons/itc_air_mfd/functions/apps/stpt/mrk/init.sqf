@@ -10,3 +10,6 @@ invertText(_display,T4);
 
 (_display displayCtrl L34) ctrlSetText "WPT";
 (_display displayCtrl L4) ctrlSetText "SAVE";
+if (_display getVariable ["itc_air_ap_returnToPage", false]) then {
+  (_display displayCtrl L3) ctrlSetText "GOTO";
+};

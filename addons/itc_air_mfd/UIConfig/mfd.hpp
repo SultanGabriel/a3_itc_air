@@ -35,6 +35,7 @@ class MFD : RscControlsGroup {
         #include "pages\stat\nav.hpp"
         #include "pages\stat\status.hpp"
         #include "pages\stpt\stpt.hpp"
+        #include "pages\ap\ap.hpp"
         #include "pages\options\options.hpp"
         #include "pages\wpn\wpn.hpp"
 

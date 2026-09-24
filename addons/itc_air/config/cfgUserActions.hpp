@@ -313,7 +313,7 @@ class CfgUserActions
         displayName = "Autopilot Toggle";
         tooltip = "Enable or disable the autopilot";
 
-        onDeactivate = "private _vehicle = vehicle player; if (!(_vehicle isKindOf 'Plane') || {driver _vehicle != player}) exitWith {}; if (!('AUTOPILOT' in (_vehicle getVariable ['itc_air_systems', []]))) exitWith {}; if (ITC_AP_isEnabled) then { [_vehicle] call itc_air_autopilot_fnc_disengage; if (ITC_AP_mode == 3) then { ITC_AP_mode = ['ALT','ALT/HDG','PATH'] find ITC_AP_modeString; }; } else { ITC_AP_isEnabled = true; [_vehicle, ITC_AP_mode] call itc_air_autopilot_fnc_autopilot; };";
+        onDeactivate = "private _vehicle = vehicle player; if (!(_vehicle isKindOf 'Plane') || {driver _vehicle != player}) exitWith {}; if (!('AUTOPILOT' in (_vehicle getVariable ['itc_air_systems', []]))) exitWith {}; [_vehicle] call itc_air_autopilot_fnc_ap_toggle;";
     };
 
 
@@ -321,8 +321,7 @@ class CfgUserActions
     {
         displayName = "Autopilot Mode";
         tooltip = "Cycle the autopilot mode";
-
-        onDeactivate = "private _vehicle = vehicle player; if (!(_vehicle isKindOf 'Plane') || {driver _vehicle != player}) exitWith {}; if ('AUTOPILOT' in (_vehicle getVariable ['itc_air_systems', []])) then { call itc_air_autopilot_fnc_autopilotToggleMode; };";
+        onDeactivate = "private _vehicle = vehicle player; if (!(_vehicle isKindOf 'Plane') || {driver _vehicle != player}) exitWith {}; if (!('AUTOPILOT' in (_vehicle getVariable ['itc_air_systems', []]))) exitWith {}; [_vehicle] call itc_air_autopilot_fnc_ap_cycleMode;";
     };
 
     // ------------------------------------------------------------------------

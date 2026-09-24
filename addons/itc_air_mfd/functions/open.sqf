@@ -71,3 +71,4 @@ _display setVariable ["sensor",""];
   (_this select 0) set [2, _app];
   (_this select 0) set [3, _page];
 }, 0, [_display, _vehicle, "", "", 0]] call CBA_fnc_addPerFrameHandler;
+// FIXME 0.033 reduce update rate of MDF, TGP_CAM is not affected by this but the UI stuff

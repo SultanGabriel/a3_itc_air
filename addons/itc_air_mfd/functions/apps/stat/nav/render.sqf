@@ -34,33 +34,68 @@ if(itc_air_wpt_tcn_on) then {
   (_display displayCtrl 211004) ctrlSetText "";
 };
 
-/*
-if (ITC_AP_isEnabled && "AP-MAN" in ((vehicle player) getVariable "itc_air_systems")) then {
-  (_display displayCtrl R4) ctrlSetText format["%1m", round ITC_AP_TargetAlt];
-  if (ITC_AP_mode isEqualTo 1) then {
-    (_display displayCtrl R45) ctrlSetText "AP ALT/HDG";
-    (_display displayCtrl R5) ctrlSetText format["HDG %1", round ITC_AP_TargetHdg];
-  } else {
-    (_display displayCtrl R45) ctrlSetText "AP ALT";
-  };
-};
-*/
-if (ITC_AP_isEnabled && "AP-MAN" in ((vehicle player) getVariable "itc_air_systems") && {ITC_AP_mode isEqualTo 1}) then {
-  (_display displayCtrl 211205) ctrlSetAngle [ITC_AP_TargetHdg - (getDir _vehicle), 0.5, 0.5];
-  (_display displayCtrl 211205) ctrlShow true;
+private _ap = [_vehicle] call itc_air_autopilot_fnc_ap_getState;
+
+private _apEnabled = _ap getOrDefault [
+    "enabled",
+    false
+];
+
+private _apMode = _ap getOrDefault [
+    "mode",
+    "ALT"
+];
+
+private _apTarget = _ap getOrDefault [
+    "target",
+    createHashMap
+];
+
+private _targetHdg = _apTarget getOrDefault [
+    "heading",
+    getDir _vehicle
+];
+
+if ( _apEnabled &&
+    {_apMode isEqualTo "ALT/HDG"} &&
+    { "AUTOPILOT" in ( _vehicle getVariable [ "itc_air_systems", [] ]) }
+) then {
+    (_display displayCtrl 211205) ctrlSetAngle [ _targetHdg - getDir _vehicle, 0.5, 0.5 ];
+    (_display displayCtrl 211205) ctrlShow true;
 } else {
-  (_display displayCtrl 211205) ctrlShow false;
+    (_display displayCtrl 211205) ctrlShow false;
 };
 
 
 (_display displayCtrl R4) ctrlSetText format["%1%2",round ((fuel _vehicle) * 100),"%"];
 (_display displayCtrl R5) ctrlSetText format["%1 min",_vehicle getVariable "playtime"];
 
-/*
-if(ITC_AIR_UFC_CTXT_PAGE == "STATNAV") then {
-  ITC_AIR_UFC_CTXT_COLUMNS_TXT set [5,str (round ITC_AP_TargetAlt)];
-  ITC_AIR_UFC_CTXT_COLUMNS_TXT set [1,str (round ITC_AP_TargetHdg)];
-  ITC_AIR_UFC_CTXT_COLUMNS_TXT set [0, str itc_air_wpt_tacanCSEL];
-  ITC_AIR_UFC_CTXT_COLUMNS_TXT set [6, str itc_air_wpt_tacanCDE];
+if ( ITC_AIR_UFC_CTXT_PAGE isEqualTo "STATNAV") then {
+
+    private _ap = [_vehicle] call itc_air_autopilot_fnc_ap_getState;
+
+    private _target = _ap getOrDefault [
+            "target",
+            createHashMap
+        ];
+
+    private _targetAlt = _target getOrDefault [
+            "altitude",
+            getPosASL _vehicle # 2
+        ];
+
+    private _targetHdg = _target getOrDefault [
+            "heading",
+            getDir _vehicle
+        ];
+
+    ITC_AIR_UFC_CTXT_COLUMNS_TXT set [
+        5,
+        str round _targetAlt
+    ];
+
+    ITC_AIR_UFC_CTXT_COLUMNS_TXT set [
+        1,
+        str round _targetHdg
+    ];
 };
-*/

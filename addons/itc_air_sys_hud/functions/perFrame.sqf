@@ -5,7 +5,7 @@ private _dotProdCam = abs(_dir vectorDotProduct (eyeDirection player));
 
 private ["_icon"];
 private _UI = uiNameSpace getVariable "ITC_AIR_HUD_UI";
-if(cameraView != "INTERNAL" ||  (_dotProdCam < cos 8) || dialog) exitWith {
+if(cameraView != "INTERNAL" ||  (_dotProdCam < cos 10) || dialog) exitWith {
   if(!isNil{_UI}) then {
     (_UI displayCtrl 13379) ctrlShow false;
     (_UI displayCtrl 13380) ctrlShow false;
@@ -20,3 +20,4 @@ _this call itc_air_hud_fnc_printText;
 _this call itc_air_hud_fnc_printIcons;
 _this call itc_air_hud_fnc_printWarnings;
 _this call itc_air_hud_fnc_printTrim;
+_this call itc_air_hud_fnc_printAutopilot;

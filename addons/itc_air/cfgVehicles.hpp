@@ -263,8 +263,8 @@ class cfgVehicles {
         class pilotCamera : litening{};
         class itc_air : itc_air_default_jet {
           tgp_overlay = "itc_air_tgp\data\overlay_jas39_2048.paa";
-          mfdApps[] = {"DSMS","TGP","STAT","TAD","STPT","OPT","MAV","FCR","EW"};
-          systems[] = {"UFC","SOI","TAXI","DSMS","MAVERICK","FCR","MFD","MFD_L","MFD_R","HMD","AUTOPILOT","AP-MAN","ROVER","SADL","FCS","ACMI","GCAS","AGCAS","TGP","WPT","TAD","HUD","EW"};
+          mfdApps[] = {"DSMS","TGP","STAT","TAD","STPT","OPT","MAV","FCR","EW","AP"};
+          systems[] = {"UFC","SOI","TAXI","DSMS","MAVERICK","FCR","MFD","MFD_L","MFD_R","HMD","AUTOPILOT","ROVER","SADL","FCS","ACMI","GCAS","AGCAS","TGP","WPT","TAD","HUD","EW"};
           //mfdType = "touch";
         };
     };
@@ -295,8 +295,8 @@ class cfgVehicles {
         magazines[] = {"120Rnd_CMFlare_Chaff_Magazine", "Laserbatteries"};
 		    scopeCurator=2;
         class itc_air : itc_air_default_jet {
-          mfdApps[] = {"DSMS","TGP","STAT","TAD","STPT","OPT","MAV","FCR","EW"};
-          systems[] = {"UFC","SOI","TAXI","DSMS","MAVERICK","FCR","MFD","MFD_L","MFD_R","HMD","AUTOPILOT","AP-MAN","ROVER","SADL","FCS","ACMI","GCAS","TGP","WPT","TAD","HUD","EW"};
+          mfdApps[] = {"DSMS","TGP","STAT","TAD","STPT","OPT","MAV","FCR","EW","AP"};
+          systems[] = {"UFC","SOI","TAXI","DSMS","MAVERICK","FCR","MFD","MFD_L","MFD_R","HMD","AUTOPILOT","ROVER","SADL","FCS","ACMI","GCAS","TGP","WPT","TAD","HUD","EW"};
         };
         class pilotCamera : litening{};
         class Components : Components {

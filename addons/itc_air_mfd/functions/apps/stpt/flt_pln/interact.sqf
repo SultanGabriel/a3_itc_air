@@ -11,5 +11,11 @@ switch (_btn) do {
   case "L4": {
     [] call itc_air_wpt_fnc_delete;
   };
+  case "L3": {
+    if (_display getVariable ["itc_air_ap_returnToPage", false]) then {
+      ["begin"] call itc_air_autopilot_fnc_goto;
+      _display setVariable ["app", "ap"];
+    };
+  };
 };
 false

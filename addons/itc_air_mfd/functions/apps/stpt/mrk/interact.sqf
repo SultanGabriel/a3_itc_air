@@ -1,6 +1,12 @@
 params ["_display", "_btn"];
 #include "..\..\..\mfdDefines.hpp"
 switch (_btn) do {
+  case "L3": {
+    if (_display getVariable ["itc_air_ap_returnToPage", false]) then {
+      ["begin"] call itc_air_autopilot_fnc_goto;
+      _display setVariable ["app", "ap"];
+    };
+  };
   case "L4": {
     private _mark = itc_air_wpt_markpoints # itc_air_wpt_markpoints_sel;
     private _name = format ["MRK %1 %2", _mark # 0, _mark # 1];

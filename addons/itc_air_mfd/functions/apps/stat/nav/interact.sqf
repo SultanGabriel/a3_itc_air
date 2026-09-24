@@ -36,19 +36,33 @@ switch(_btn) do {
 
     ITC_AIR_UFC_CTXT_COLUMNS_FNC = [_tacanCSEL,{},{},{},_tacanCDE,{},{},{}];
 
-    if ("AP-MAN" in ((vehicle player) getVariable "itc_air_systems")) then {
-      //(_display displayCtrl R4) ctrlSetText format["%1m", round ITC_AP_TargetAlt];
-      ITC_AIR_UFC_CTXT_COLUMNS_BTN set [5,"AP-ALT"];
-      ITC_AIR_UFC_CTXT_COLUMNS_TXT set [5,""];
-      ITC_AIR_UFC_CTXT_COLUMNS_FNC set [5, {[nil, "ITC_AP_TargetAlt", true, itc_air_autopilot_fnc_ufcInput] call itc_air_ufc_fnc_prepareInput;}];
-      ITC_AIR_UFC_CTXT_COLUMNS_BTN set [1,"AP-HSEL"];
-      ITC_AIR_UFC_CTXT_COLUMNS_TXT set [1,""];
-      ITC_AIR_UFC_CTXT_COLUMNS_FNC set [1, {[nil, "ITC_AP_TargetHdg", true, itc_air_autopilot_fnc_ufcInput] call itc_air_ufc_fnc_prepareInput;}];
+  if ( "AUTOPILOT" in ( (vehicle player) getVariable [ "itc_air_systems", [] ])) then {
+        ITC_AIR_UFC_CTXT_COLUMNS_BTN set [5,"AP-ALT"];
+        ITC_AIR_UFC_CTXT_COLUMNS_TXT set [5,""];
+        ITC_AIR_UFC_CTXT_COLUMNS_FNC set [5, {
+            [
+                nil,
+                "altitude",
+                true,
+                itc_air_autopilot_fnc_ap_setTarget
+            ] call itc_air_ufc_fnc_prepareInput;
+        }];
+        ITC_AIR_UFC_CTXT_COLUMNS_BTN set [1,"AP-HSEL"];
+        ITC_AIR_UFC_CTXT_COLUMNS_TXT set [1,""];
+        ITC_AIR_UFC_CTXT_COLUMNS_FNC set [1, {
+            [
+                nil,
+                "heading",
+                true,
+                itc_air_autopilot_fnc_ap_setTarget
+            ] call itc_air_ufc_fnc_prepareInput;
+        }];
     };
 
 
   };
   /*
+  FIXME what's this legacy code? 
   case "UFC": {
     params ["_display", "_btn", "_variable", "_value"];
     switch(_variable) do {

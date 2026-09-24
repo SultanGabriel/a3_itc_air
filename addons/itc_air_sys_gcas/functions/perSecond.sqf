@@ -1,5 +1,6 @@
 params ["_plane"];
 
+
 // if the plane is grounded, GCAS cannot produce airborne warnings. 
 // Exit early to avoid unnecessary calculations and to reset any active warnings.
 if (getPosATL _plane # 2 < 1 || !itc_air_gcas_on) exitWith {
@@ -21,18 +22,29 @@ private _collide = [_plane, 1.5] call itc_air_gcas_fnc_checkCollide;
 private _terrainWarning = [_plane, 5.5] call itc_air_gcas_fnc_checkCollide;
 
 if (_collide) then {
-	itc_air_gcas_warn = true;
-	itc_air_gcas_time = CBA_missionTime;
+	private _ap = [_plane] call itc_air_autopilot_fnc_ap_getState;
 
-	  // call FWS to set warning
+	private _apEnabled = _ap getOrDefault [
+		"enabled",
+		false
+	];
 
-	if (!(_plane getVariable ["itc_air_gearState", true]) && (ITC_AP_mode != 3 || !ITC_AP_isEnabled) && itc_air_agcas_on) then {
+	private _apMode = _ap getOrDefault [
+		"mode",
+		"ALT"
+	];
+
+	if (!(_plane getVariable ["itc_air_gearState", true]) &&
+		{!(_apEnabled && {_apMode isEqualTo "AGCAS"})} &&
+		{itc_air_agcas_on}
+	) then {
+
 		systemChat "AGCAS RECOVER";
-		[_plane] call itc_air_autopilot_fnc_disengage;
-		_plane spawn {
-			sleep 0.05;
-			ITC_AP_isEnabled = true;
-			[_this, 3] call itc_air_autopilot_fnc_autopilot;
+
+		[ "AGCAS", _plane ] call itc_air_autopilot_fnc_ap_setMode;
+
+		if (!_apEnabled) then {
+			[_plane,true] call itc_air_autopilot_fnc_ap_enable;
 		};
 	};
 };

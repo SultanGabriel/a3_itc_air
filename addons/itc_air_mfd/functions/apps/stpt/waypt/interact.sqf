@@ -15,7 +15,12 @@ switch (_btn) do {
     [1] call itc_air_wpt_fnc_reorder;
   };
   case "L3": {
-    [] call itc_air_wpt_fnc_import;
+    if (_display getVariable ["itc_air_ap_returnToPage", false]) then {
+      ["begin"] call itc_air_autopilot_fnc_goto;
+      _display setVariable ["app", "ap"];
+    } else {
+      [] call itc_air_wpt_fnc_import;
+    };
   };
   case "L4": {
     [] call itc_air_wpt_fnc_delete;

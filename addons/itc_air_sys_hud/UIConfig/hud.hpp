@@ -270,6 +270,25 @@ class RscTitles {
 
             text = "NU";
         };
+
+        // Autopilot connection and selected mode.
+        class RscHUDAutopilot : RscHUDTextStptName
+        {
+            idc = 1030;
+            text = "AP";
+            x = 0;
+            y = 0;
+            w = 0.060;
+            h = 0.030;
+            sizeEx = 0.026;
+            style = 1;
+        };
+
+        class RscHUDAutopilotMode : RscHUDAutopilot
+        {
+            idc = 1031;
+            text = "ALT";
+        };
       };
     };
     class ITC_HUD_CCRP_UI_GRP : RscControlsGroupNoScrollbars {
